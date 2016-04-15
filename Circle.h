@@ -1,16 +1,17 @@
 #pragma once
+#include <string>
+
 class Circle
 {
-private:
-
-
 public:
-	Circle();
-	float dist(Circle c);
+	Circle(int x, int y, double r);
+	Circle(int x, int y, double r, std::string id);
+	double dist(Circle c);
 	~Circle();
 	int x;
 	int y;
-	float r;
+	double r;
+	std::string id;
 };
 
 
