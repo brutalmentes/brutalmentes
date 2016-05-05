@@ -15,8 +15,6 @@ SDL_Window* gWindow = NULL;
 LTexture gDotTexture;
 LTexture backgroundTexture;
 
-
-
 bool init() {
 	bool success = true;
 
