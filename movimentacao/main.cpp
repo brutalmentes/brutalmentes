@@ -41,6 +41,8 @@ bool init() {
 				if(!(IMG_Init( imgFlags ) & imgFlags)) {
 					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
 					success = false;
+				} else {
+					//list<Circle> LoadCollisionMap::load(string );
 				}
 			}
 		}
