@@ -1,16 +1,15 @@
-#pragma once
+#ifndef LOAD_COLLISION_H
+#define LOAD_COLLISION_H
 
+#include "share.h"
 #include "Circle.h"
-#include <string>
-#include <list>
-
-using namespace std;
 
 class LoadCollisionMap
 {
-public:	
+public:
 	LoadCollisionMap();
 	~LoadCollisionMap();
-	list<Circle> load(string fileName);
+	list<Circle> load();
 };
 
+#endif

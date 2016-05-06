@@ -1,7 +1,5 @@
 #include "lib/LoadCollisionMap.h"
 
-#include <fstream>
-
 LoadCollisionMap::LoadCollisionMap()
 {
 }
@@ -11,9 +9,9 @@ LoadCollisionMap::~LoadCollisionMap()
 {
 }
 
-list<Circle> LoadCollisionMap::load(string fileName)
+list<Circle> LoadCollisionMap::load()
 {
-	ifstream fin(fileName);
+	ifstream fin("res/Circulos_oficial.csv");
 	string line;
 
 	list<Circle> circlesList;

@@ -1,6 +1,4 @@
 #include "lib/Circle.h"
-#include <cmath>
-#include <string>
 
 using namespace std;
 
