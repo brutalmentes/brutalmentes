@@ -75,6 +75,12 @@ void Renderer::render() {
 	SDL_RenderClear(this->gRenderer);
 
 	while(texture != NULL) {
+		if(texture->getPosX() > Renderer::SCREEN_WIDTH) {
+			texture->setPosX(Renderer::SCREEN_WIDTH);
+		} else if(texture->getPosX() < 0) {
+			texture->setPosX(0);
+		}
+
 		texture->render(this->gRenderer);
 		texture = texture->getNext();
 	}

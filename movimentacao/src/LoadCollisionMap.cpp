@@ -11,7 +11,7 @@ LoadCollisionMap::~LoadCollisionMap()
 
 list<Circle> LoadCollisionMap::load()
 {
-	ifstream fin("res/Circulos_oficial.csv");
+	ifstream fin("res/Circulos_oficial_2.csv");
 	string line;
 
 	list<Circle> circlesList;

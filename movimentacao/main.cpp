@@ -13,9 +13,10 @@ int main(int argc, char* args[]) {
 	} else {
 		Character* c = new Character(new Texture("res/img/dot.bmp", 200, 200));
 		renderer->addTexture(new Texture("res/img/waterlevel2.png", 0, 0));
-		renderer->addTexture(c->getTexture());
 
 		renderer->render();
+
+		renderer->addTexture(c->getTexture());
 
 		bool quit = false;
 
