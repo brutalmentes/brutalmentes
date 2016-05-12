@@ -17,10 +17,6 @@ class Dot {
 		void move();
 
 		void render(LTexture* gDotTexture, LTexture* backgroundTexture, SDL_Renderer *gRenderer);
-
-		void setPosX(int posX);
-
-		void setPosY(int posY);
 	private:
 		int mPosX, mPosY;
 
