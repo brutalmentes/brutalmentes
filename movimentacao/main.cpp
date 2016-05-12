@@ -1,113 +1,105 @@
 //Using SDL, SDL_image, standard IO, and strings
 #include "lib/ltexture.h"
 #include "lib/dot.h"
+#include "lib/CollisionDetector.h"
+#include "lib/LoadCollisionMap.h"
+#include "lib/Renderer.h"
+#include "lib/Character.h"
+#include <unistd.h>
 
-SDL_Renderer* gRenderer = NULL;
+int main(int argc, char* args[]) {
+	Renderer* renderer = new Renderer();
+	bool quit = false;
 
-bool init();
-
-bool loadMedia();
-
-void close();
-
-SDL_Window* gWindow = NULL;
-
-LTexture gDotTexture;
-LTexture backgroundTexture;
-
-bool init() {
-	bool success = true;
-
-	if(SDL_Init(SDL_INIT_VIDEO) < 0) {
-		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
-		success = false;
-	} else {
-		if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
-			printf( "Warning: Linear texture filtering not enabled!" );
-		}
-
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-		if(gWindow == NULL) {
-			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
-			success = false;
-		} else {
-			gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
-			if(gRenderer == NULL) {
-				printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
-				success = false;
-			} else {
-				SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-				int imgFlags = IMG_INIT_PNG;
-				if(!(IMG_Init( imgFlags ) & imgFlags)) {
-					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
-					success = false;
-				}
-			}
-		}
-	}
-
-	return success;
-}
-
-bool loadMedia() {
-	//Loading success flag
-	bool success = true;
-
-	//Load dot texture
-	if(!gDotTexture.loadFromFile("dot.bmp", gRenderer)) {
-		printf( "Failed to load dot texture!\n" );
-		success = false;
-	}
-
-	if(!backgroundTexture.loadFromFile("waterlevel2.png", gRenderer)) {
-		printf( "Failed to load dot texture!\n" );
-		success = false;
-	}
-
-	return success;
-}
-
-void close() {
-	gDotTexture.free();
-
-	SDL_DestroyRenderer( gRenderer );
-	SDL_DestroyWindow( gWindow );
-	gWindow = NULL;
-	gRenderer = NULL;
-
-	IMG_Quit();
-	SDL_Quit();
-}
-
-int main( int argc, char* args[] ) {
-
-	if(!init()) {
+	if(!renderer->init()) {
 		printf( "Failed to initialize!\n" );
 	} else {
-		if(!loadMedia()) {
-			printf( "Failed to load media!\n" );
-		} else {
-			bool quit = false;
+		Character* c = new Character(new Texture("res/img/dot.bmp", 200, 200));
+		renderer->addTexture(new Texture("res/img/waterlevel2.png", 0, 0));
+		renderer->addTexture(c->getTexture());
 
-			SDL_Event e;
-			Dot dot;
-			while(!quit) {
-				while(SDL_PollEvent(&e) != 0) {
-					if(e.type == SDL_QUIT) {
-						quit = true;
-					}
-					dot.handleEvent(e);
+		renderer->render();
+
+		bool quit = false;
+
+		SDL_Event e;
+
+		LoadCollisionMap lcm;
+		list<Circle> circlesList;
+		circlesList = lcm.load();
+
+		list<Circle> l;
+		Circle c1(200,0,10);
+		l.push_back(c1);
+
+		CollisionDetector cd;
+		int y = 0;
+
+		while(!cd.hasCollision(circlesList, l)) {
+			l.pop_back();
+			y += 1;
+			Circle c1(200,y,10);
+			l.push_back(c1);
+		}
+		y -= 1;
+		c->setPosX(200);
+		c->setPosY(y);
+
+		renderer->render();
+
+		int mVelX = 0;
+		int DOT_VEL = 1;
+
+		while(!quit) {
+			while(SDL_PollEvent(&e) != 0) {
+				if(e.type == SDL_QUIT) {
+					quit = true;
 				}
-				dot.move();
-
-				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-				SDL_RenderClear(gRenderer);
-				dot.render(&backgroundTexture, &gDotTexture, gRenderer);
-				SDL_RenderPresent( gRenderer );
+				if(e.type == SDL_KEYDOWN && e.key.repeat == 0) {
+					switch(e.key.keysym.sym) {
+						case SDLK_LEFT: mVelX -= DOT_VEL; break;
+						case SDLK_RIGHT: mVelX += DOT_VEL; break;
+					}
+				} else if(e.type == SDL_KEYUP && e.key.repeat == 0) {
+					switch(e.key.keysym.sym) {
+						case SDLK_LEFT: mVelX += DOT_VEL; break;
+						case SDLK_RIGHT: mVelX -= DOT_VEL; break;
+					}
+				}
 			}
+			c->setPosX(c->getPosX() + mVelX);
+
+
+			LoadCollisionMap lcm;
+			list<Circle> circlesList;
+			circlesList = lcm.load();
+
+			int mPosX = c->getPosX();
+			int mPosY = c->getPosY();
+
+			list<Circle> l;
+			Circle c1(mPosX,mPosY,10);
+			l.push_back(c1);
+
+			CollisionDetector cd;
+			int y = mPosY;
+			while(cd.hasCollision(circlesList, l)) {
+				l.pop_back();
+				y -= 1;
+				Circle c1(mPosX,y,10);
+				l.push_back(c1);
+			};
+			while(!cd.hasCollision(circlesList, l)) {
+				l.pop_back();
+				y += 1;
+				Circle c1(mPosX,y,10);
+				l.push_back(c1);
+			};
+
+			c->setPosY(y);
+
+			renderer->render();
 		}
 	}
-	close();
-
 	return 0;
 }
