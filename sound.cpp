@@ -7,7 +7,6 @@
 
 Sound::sound()
 {
-    printf("passeeeii");
 loadAudio();
 SDL_Thread* threadID= SDL_CreateThread( threadFunction, "SoundThread", (void*) NULL);
 }
@@ -24,7 +23,6 @@ return 0;
 int Sound::loadAudio()
 {
     int success = 1;
-    printf("passeeeii");
     gScratch = Mix_LoadWAV( track1  );
    
     if( gScratch == NULL )

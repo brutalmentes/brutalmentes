@@ -366,11 +366,9 @@ int main( int argc, char* args[] )
                         Object object(0,300);
                         Launch launch(10,45);
                         Audio sound;
-			printf("tentou \n");
 			//Btimer btimer(23)
 			Btimer a(1);
 			Relogio rel;
-                        printf("teoricamente deu");
 			//While application is running
 			while( !quit )
 			{
