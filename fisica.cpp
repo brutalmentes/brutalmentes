@@ -366,9 +366,7 @@ int main( int argc, char* args[] )
                         Object object(0,300);
                         Launch launch(10,45);
                         Audio sound;
-			//Btimer btimer(23)
-			Btimer a(1);
-			Relogio rel;
+			Btimer btimer(23);
 			//While application is running
 			while( !quit )
 			{
