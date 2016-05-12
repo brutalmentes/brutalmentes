@@ -9,7 +9,6 @@
 
 int main(int argc, char* args[]) {
 	Renderer* renderer = new Renderer();
-	bool quit = false;
 
 	if(!renderer->init()) {
 		printf( "Failed to initialize!\n" );
