@@ -99,20 +99,19 @@ int main( int argc, char* args[] ) {
 			circlesList = lcm.load();
 
 			list<Circle> l;
-			Circle c1(200,0,18);
+			Circle c1(200,0,10);
 			l.push_back(c1);
 
 			CollisionDetector cd;
 			int y = 0;
+
 			while(!cd.hasCollision(circlesList, l)) {
 				l.pop_back();
 				y += 1;
-				Circle c1(200,y,18);
+				Circle c1(200,y,10);
 				l.push_back(c1);
 			}
-
-			printf("%d", y);
-
+			y -= 1;
 			dot.setPosX(200);
 			dot.setPosY(y);
 

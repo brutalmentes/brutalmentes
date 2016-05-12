@@ -49,7 +49,7 @@ void Dot::move() {
 	circlesList = lcm.load();
 
 	list<Circle> l;
-	Circle c1(mPosX,mPosY,18);
+	Circle c1(mPosX,mPosY,10);
 	l.push_back(c1);
 
 	CollisionDetector cd;
@@ -57,9 +57,16 @@ void Dot::move() {
 	while(cd.hasCollision(circlesList, l)) {
 		l.pop_back();
 		y -= 1;
-		Circle c1(mPosX,y,18);
+		Circle c1(mPosX,y,10);
 		l.push_back(c1);
 	};
+	while(!cd.hasCollision(circlesList, l)) {
+		l.pop_back();
+		y += 1;
+		Circle c1(mPosX,y,10);
+		l.push_back(c1);
+	};
+
 
 	mPosY = y;
 
