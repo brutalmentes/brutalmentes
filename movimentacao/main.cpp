@@ -1,6 +1,4 @@
 //Using SDL, SDL_image, standard IO, and strings
-#include "lib/ltexture.h"
-#include "lib/dot.h"
 #include "lib/CollisionDetector.h"
 #include "lib/LoadCollisionMap.h"
 #include "lib/Renderer.h"
