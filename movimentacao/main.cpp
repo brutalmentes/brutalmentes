@@ -1,8 +1,6 @@
 //Using SDL, SDL_image, standard IO, and strings
 #include "lib/ltexture.h"
 #include "lib/dot.h"
-#include "lib/CollisionDetector.h"
-#include "lib/LoadCollisionMap.h"
 
 SDL_Renderer* gRenderer = NULL;
 
@@ -93,29 +91,6 @@ int main( int argc, char* args[] ) {
 
 			SDL_Event e;
 			Dot dot;
-
-			LoadCollisionMap lcm;
-			list<Circle> circlesList;
-			circlesList = lcm.load();
-
-			list<Circle> l;
-			Circle c1(200,0,18);
-			l.push_back(c1);
-
-			CollisionDetector cd;
-			int y = 0;
-			while(!cd.hasCollision(circlesList, l)) {
-				l.pop_back();
-				y += 1;
-				Circle c1(200,y,18);
-				l.push_back(c1);
-			}
-
-			printf("%d", y);
-
-			dot.setPosX(200);
-			dot.setPosY(y);
-
 			while(!quit) {
 				while(SDL_PollEvent(&e) != 0) {
 					if(e.type == SDL_QUIT) {
@@ -127,7 +102,7 @@ int main( int argc, char* args[] ) {
 
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
-				dot.render(&gDotTexture, &backgroundTexture, gRenderer);
+				dot.render(&backgroundTexture, &gDotTexture, gRenderer);
 				SDL_RenderPresent( gRenderer );
 			}
 		}
