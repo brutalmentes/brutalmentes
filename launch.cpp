@@ -1,39 +1,34 @@
-#include "cenario.cpp"
+
 #include <math.h>
-class Launch
+#include "launch.h"
+#include <stdio.h>
+
+Launch::Launch()
+{
+}
+Launch::Launch(float force, float ang)
  {
-   private:
-   float force;
-   float ang;
-   Cenario cenario;
-
-   public:
-
-
-Launch(float force, float ang, Cenario cenario)
- {
+printf("blablabla");
  this->force=force;
  this->ang=force;
- this->cenario=cenario;
 
  }
 
- void setAng(float angt)
+ void Launch::setAng(float angt)
  {ang=angt;}
 
-float  getAng(void)
+float  Launch::getAng(void)
  {return ang;}
 
-float getnextspeedx(float force,float ang)
-{   float v_x;
+float Launch::getnextspeedx()
+{   float v_x=0;
 
 
-    v_x=force*cos(ang);
+   v_x=this->force*cos(this->ang);
 
-
-   return v_x;
+   return 25;
 }
-float getnextspeedy(float v_y_ant,float acc_y, int t)
+float Launch::getnextspeedy(float v_y_ant,float acc_y, int t)
 {   float v_y;
 
 
@@ -42,7 +37,7 @@ float getnextspeedy(float v_y_ant,float acc_y, int t)
 
    return v_y;
 }
-float getnextpositionx(float s_ant_x,float v_x,int t)
+float Launch::getnextpositionx(float s_ant_x,float v_x,int t)
 {
 
     float s_x;
@@ -53,7 +48,7 @@ float getnextpositionx(float s_ant_x,float v_x,int t)
 
 }
 
-float getnextpositiony(float s_ant_y, float v_y,int t)
+float Launch::getnextpositiony(float s_ant_y, float v_y,int t)
 {
     float s_y;
 
@@ -63,7 +58,7 @@ float getnextpositiony(float s_ant_y, float v_y,int t)
  return s_y;
 }
 
-};
+
 
 
 
