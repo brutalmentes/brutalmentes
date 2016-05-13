@@ -8,7 +8,6 @@ Launch::Launch()
 }
 Launch::Launch(float force, float ang)
  {
-printf("blablabla");
  this->force=force;
  this->ang=force;
 
@@ -26,7 +25,7 @@ float Launch::getnextspeedx()
 
    v_x=this->force*cos(this->ang);
 
-   return 25;
+   return v_x;
 }
 float Launch::getnextspeedy(float v_y_ant,float acc_y, int t)
 {   float v_y;
