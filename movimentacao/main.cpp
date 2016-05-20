@@ -11,7 +11,7 @@ int main(int argc, char* args[]) {
 	if(!renderer->init()) {
 		printf( "Failed to initialize!\n" );
 	} else {
-		Character* c = new Character(new Texture("res/img/dot.bmp", 200, 200));
+		Character* c = new Character(new Texture("res/img/newton_stop.png", 200, 200, true, 32, 8));
 		renderer->addTexture(new Texture("res/img/waterlevel2.png", 0, 0));
 
 		renderer->render();
@@ -27,7 +27,7 @@ int main(int argc, char* args[]) {
 		circlesList = lcm.load();
 
 		list<Circle> l;
-		Circle c1(200,0,10);
+		Circle c1(200,0,32);
 		l.push_back(c1);
 
 		CollisionDetector cd;
@@ -36,7 +36,7 @@ int main(int argc, char* args[]) {
 		while(!cd.hasCollision(circlesList, l)) {
 			l.pop_back();
 			y += 1;
-			Circle c1(200,y,10);
+			Circle c1(200,y,32);
 			l.push_back(c1);
 		}
 		y -= 1;
@@ -76,7 +76,7 @@ int main(int argc, char* args[]) {
 			int mPosY = c->getPosY();
 
 			list<Circle> l;
-			Circle c1(mPosX,mPosY,10);
+			Circle c1(mPosX,mPosY,32);
 			l.push_back(c1);
 
 			CollisionDetector cd;
@@ -84,13 +84,13 @@ int main(int argc, char* args[]) {
 			while(cd.hasCollision(circlesList, l)) {
 				l.pop_back();
 				y -= 1;
-				Circle c1(mPosX,y,10);
+				Circle c1(mPosX,y,32);
 				l.push_back(c1);
 			};
 			while(!cd.hasCollision(circlesList, l)) {
 				l.pop_back();
 				y += 1;
-				Circle c1(mPosX,y,10);
+				Circle c1(mPosX,y,32);
 				l.push_back(c1);
 			};
 

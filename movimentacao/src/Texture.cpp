@@ -6,6 +6,22 @@ Texture::Texture(string path, int posX, int posY) {
 	this->posY = posY;
 	this->next = NULL;
 	this->sdlTexture = NULL;
+	this->isSprite = false;
+	this->currentFrame = 1;
+	this->spriteWidth = 0;
+	this->nFrames = 0;
+}
+
+Texture::Texture(string path, int posX, int posY, bool isSprite, int spriteWidth, int nFrames) {
+	this->path = path;
+	this->posX = posX;
+	this->posY = posY;
+	this->next = NULL;
+	this->sdlTexture = NULL;
+	this->isSprite = isSprite;
+	this->currentFrame = 1;
+	this->spriteWidth = spriteWidth;
+	this->nFrames = nFrames;
 }
 
 Texture::~Texture() {
@@ -34,6 +50,10 @@ Texture* Texture::getNext() {
 
 void Texture::setNext(Texture* newTexture) {
 	this->next = newTexture;
+}
+
+bool Texture::getIsSprite() {
+	return this->isSprite;
 }
 
 bool Texture::loadFromFile(SDL_Renderer* gRenderer) {
@@ -69,10 +89,32 @@ void Texture::free() {
 }
 
 void Texture::render(SDL_Renderer* gRenderer, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip) {
-	SDL_Rect renderQuad = {this->posX, this->posY, this->width, this->height};
-	if(clip != NULL) {
-		renderQuad.w = clip->w;
-		renderQuad.h = clip->h;
+	SDL_Rect renderQuad;
+	SDL_Rect spriteRect;
+	
+	renderQuad = {this->posX, this->posY, this->width, this->height};
+	
+	//if(clip != NULL) {
+	//	renderQuad.w = clip->w;
+	//	renderQuad.h = clip->h;
+	//}
+	
+	if(this->isSprite) {
+		spriteRect.x = (this->currentFrame - 1) * this->spriteWidth;
+		spriteRect.y = 0;
+		spriteRect.w = this->spriteWidth;
+		spriteRect.h = this->height;
+		
+		if(this->currentFrame == this->nFrames) {
+			this->currentFrame = 1;
+		} else {
+			this->currentFrame = this->currentFrame + 1;
+		}
+		renderQuad.w = spriteRect.w;
+		renderQuad.h = spriteRect.h;
+		
+		SDL_RenderCopyEx(gRenderer, this->sdlTexture, &spriteRect, &renderQuad, angle, center, flip);
+	} else {
+		SDL_RenderCopyEx(gRenderer, this->sdlTexture, clip, &renderQuad, angle, center, flip);
 	}
-	SDL_RenderCopyEx(gRenderer, this->sdlTexture, clip, &renderQuad, angle, center, flip);
 }

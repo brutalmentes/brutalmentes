@@ -7,6 +7,8 @@ class Texture {
 	public:
 		Texture(string path, int posX, int posY);
 
+		Texture(string path, int posX, int posY, bool isSprite, int spriteWidth, int nFrames);
+		
 		~Texture();
 
 		int getPosX();
@@ -20,6 +22,8 @@ class Texture {
 		Texture* getNext();
 
 		void setNext(Texture* newTexture);
+		
+		bool getIsSprite();
 
 		bool loadFromFile(SDL_Renderer* gRenderer);
 
@@ -28,9 +32,10 @@ class Texture {
 		void render(SDL_Renderer* gRenderer, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	private:
 		Texture* next;
-		int posX, posY, width, height;
+		int posX, posY, width, height, currentFrame, nFrames, spriteWidth;
 		SDL_Texture* sdlTexture;
 		string path;
+		bool isSprite;
 };
 
 #endif
