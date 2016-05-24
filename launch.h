@@ -1,4 +1,6 @@
-#include "cenario.h"
+#ifndef LAUNCH
+#define LAUNCH
+
 class Launch
  {
    private:
@@ -11,8 +13,12 @@ class Launch
  	Launch(float , float  );
 	void setAng(float );
  	float  getAng(void);
+ 	float getForce();
+ 	float initialspeedy();
  	float getnextspeedx();
- 	float getnextspeedy(float ,float , int );
- 	float getnextpositionx(float ,float ,int );
- 	float getnextpositiony(float , float ,int );
+ 	float getnextspeedy(float ,float , float );
+ 	float getnextpositionx(float ,float ,float );
+ 	float getnextpositiony(float , float ,float );
 };
+
+#endif

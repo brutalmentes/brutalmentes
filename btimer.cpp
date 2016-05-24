@@ -1,18 +1,18 @@
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <stdio.h>
 #include <string>
-#include <SDL2/SDL_thread.h>
-#include <SDL2/SDL_mixer.h>
+#include <SDL_mixer.h>
 #include "btimer.h"
 
+#include <iostream>
 
-
-Btimer::Btimer(int adsa)
+Btimer::Btimer()
 {
-  printf("contruiu a thread");
- // SDL_Thread *thread = SDL_CreateThread (thread_func_wrapper, NULL, this);
+    tempoMs = 0;
+    this->thread = SDL_CreateThread (thread_func_wrapper, NULL, this);
 }
 
+Btimer::~Btimer(){}
 
 int Btimer::thread_func_wrapper(void *data)
 {
@@ -22,19 +22,16 @@ int Btimer::thread_func_wrapper(void *data)
 
 
 
-int Btimer:: threadFunction( void*data)
-{        printf("porra");
-	//SDL_Delay(250);
-	return 1;
-           
+int Btimer:: threadFunction(void *data)
+{
+    while(1){
+        SDL_Delay(10);
+        tempoMs += 0.1;
+    }
 
+	return 0;
 }
 
-/*
-
-int main()
-{
-Btimer a(1);
-return 1;
-
-}*/
+float Btimer::getTempo(){
+    return tempoMs;
+}

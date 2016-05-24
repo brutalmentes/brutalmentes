@@ -1,3 +1,6 @@
+#ifndef OBJECT
+#define OBJECT
+
 class Object
 {
     public:
@@ -14,14 +17,18 @@ class Object
 		//Takes key presses and adjusts the dot's velocity
 
 		//Moves the dot
-                void move_alone(float ,float);
+        void move_alone(float ,float);
 		//Shows the dot on the screen
 		void render();
 
+		void setinitialspeed(float,float);
+
     //private:
 		//The X and Y offsets of the dot
-		int mPosX, mPosY;
+		float mPosX, mPosY;
 
 		//The velocity of the dot
-		int mVelX, mVelY;
+		float mVelX, mVelY;
 };
+
+#endif
