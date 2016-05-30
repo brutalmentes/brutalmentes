@@ -23,20 +23,20 @@ int Audio::loadAudio()
     int success = 1;
     gTrack1 = Mix_LoadWAV(track1);
     tracks[track1]=gTrack1;
- /*   gTrack2 = Mix_LoadWAV( track2  );
-    tracks[id++]=gTrack2;
+    gTrack2 = Mix_LoadWAV(track2);
+    tracks[track2]=gTrack2;
     gTrack3 = Mix_LoadWAV( track3  );
-    tracks[id++]=gTrack3;
+    tracks[track3]=gTrack3;
     gTrack4 = Mix_LoadWAV( track4  );
-    tracks[id++]=gTrack4;
+    tracks[track4]=gTrack4;
     gTrack5 = Mix_LoadWAV( track5  );
-    tracks[id++]=gTrack5;
+    tracks[track5]=gTrack5;
     gTrack6 = Mix_LoadWAV( track6  );
-    tracks[id++]=gTrack6;
+    tracks[track6]=gTrack6;
     gTrack7 = Mix_LoadWAV( track7  );
-    track[id++]=gTrack7;
+    tracks[track7]=gTrack7;
     gTrack8 = Mix_LoadWAV( track8  );
-    track[id++]=gTrack8;
-*/    return success; 
+    tracks[track8]=gTrack8;
+    return success; 
 }
 

@@ -19,7 +19,18 @@ class Audio
 	 char* track10="audio/RA06.wav";
 	 char* track11="audio/SG01.wav";
 	 char* track12="audio/SG03.wav";
-	 Mix_Chunk* gTrack1,gTrack2,gTrack3,gTrack4,gTrack5,gTrack6,gTrack7,gTrack8,gTrack9,gTrack10,gTrack11,gTrack12;
+	 Mix_Chunk* gTrack1;
+	 Mix_Chunk* gTrack2; 
+	 Mix_Chunk* gTrack3;
+	 Mix_Chunk* gTrack4;
+	 Mix_Chunk* gTrack5;
+	 Mix_Chunk* gTrack6;
+	 Mix_Chunk* gTrack7;
+	 Mix_Chunk* gTrack8;
+	 Mix_Chunk* gTrack9;
+	 Mix_Chunk* gTrack10;
+	 Mix_Chunk* gTrack11;
+	 Mix_Chunk* gTrack12;
          std::map<std::string, Mix_Chunk*> tracks; 
  public:
        Audio();
