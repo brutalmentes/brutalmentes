@@ -1,43 +1,42 @@
 #include <stdio.h>
 #include <string>
-#include <SDL_thread.h>
-#include <SDL_mixer.h>
-#include "audio.h"
+#include <SDL2/SDL_thread.h>
+#include <SDL2/SDL_mixer.h>
+#include "Audio.h"
 
 Audio::Audio()
 {
-	track1 = "snd/Brutalmentes_theme_sample_-_29_04_16_11.wav";
-	gScratch = NULL;
-
+    printf("constroi \n");
+    Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 );
     loadAudio();
-    SDL_Thread *thread = SDL_CreateThread (threadFuncWrapper, NULL, this);
 }
 
-
-int Audio:: threadFunction( void*data)
+void Audio::playSound(std::string id, int loop)
 {
-	  Mix_PlayChannelTimed(-1, gScratch, 0 ,-1);
-      return 0;
+  printf("recebe ordem para tocar %s \n",id);  
+  Mix_PlayChannel(-1,tracks[id], loop);
 }
 
 int Audio::loadAudio()
-{
+{  
+   printf("carrega os audios \n"); 
     int success = 1;
-    gScratch = Mix_LoadWAV( track1  );
-   
-    if( gScratch == NULL )
-    {
-		printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
-        success = 0;
-    }
- 
-   return success;
-}
-
-
-int Audio::threadFuncWrapper(void *data)
-{
-   Audio* self = static_cast<Audio*>(data);
-   return self->threadFunction(data);
+    gTrack1 = Mix_LoadWAV(track1);
+    tracks[track1]=gTrack1;
+ /*   gTrack2 = Mix_LoadWAV( track2  );
+    tracks[id++]=gTrack2;
+    gTrack3 = Mix_LoadWAV( track3  );
+    tracks[id++]=gTrack3;
+    gTrack4 = Mix_LoadWAV( track4  );
+    tracks[id++]=gTrack4;
+    gTrack5 = Mix_LoadWAV( track5  );
+    tracks[id++]=gTrack5;
+    gTrack6 = Mix_LoadWAV( track6  );
+    tracks[id++]=gTrack6;
+    gTrack7 = Mix_LoadWAV( track7  );
+    track[id++]=gTrack7;
+    gTrack8 = Mix_LoadWAV( track8  );
+    track[id++]=gTrack8;
+*/    return success; 
 }
 

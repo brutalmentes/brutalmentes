@@ -3,21 +3,23 @@
 #include "CollisionDetector.h"
 #include "State.h"
 #include <string>
-
+#include "Audio.h"
 Renderer renderer;
 StateMachine stateMachine;
 CollisionDetector collisionDetector;
-
+Audio audio;
 int main(int argc, char *argv[]) 
 {
+
+	audio.playSound("audio/AC01.wav",3);
 	if(!renderer.init())
 	{
-		stateMachine.setState(States::STATE_EXIT);
+		stateMachine.setState(STATE_EXIT);
 	}
 
 	State* currentState = stateMachine.getCurrentState();
 
-	while(currentState->getName() != States::STATE_EXIT)
+	while(currentState->getName() != STATE_EXIT)
 	{
 		currentState->events();
 		currentState->logic();
