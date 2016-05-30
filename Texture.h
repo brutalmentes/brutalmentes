@@ -31,10 +31,13 @@ class Texture {
 
 		bool loadFromFile(SDL_Renderer* gRenderer);
 
+		void setFlip(SDL_RendererFlip flip);
+
 		void free();
 
-		void render(SDL_Renderer* gRenderer, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+		void render(SDL_Renderer* gRenderer, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL);
 	private:
+		SDL_RendererFlip flip;
 		Texture* next;
 		int posX, posY, width, height, currentFrame, nFrames, spriteWidth;
 		SDL_Texture* sdlTexture;

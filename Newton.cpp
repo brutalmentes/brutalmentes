@@ -13,7 +13,22 @@ Newton::~Newton()
 	delete this->texture;
 }
 
-std::list<Circle> Newton::getCollisionList()
+void Newton::setPosX(int posX) 
 {
-	return this->collisionList;
+	Character::setPosX(posX);
+
+	Circle c = this->collisionList.back();
+	this->collisionList.pop_back();
+	c.x = posX;
+	this->collisionList.push_back(c);
+}
+
+void Newton::setPosY(int posY) 
+{
+	Character::setPosY(posY);
+
+	Circle c = this->collisionList.back();
+	this->collisionList.pop_back();
+	c.y = posY;
+	this->collisionList.push_back(c);
 }

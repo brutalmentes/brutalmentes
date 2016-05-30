@@ -18,7 +18,12 @@ int DOT_VEL = 10;
 
 MoveCharacter::MoveCharacter()
 {
+	while(!collisionDetector.hasCollision(scene.getCollisionList(), newton.getCollisionList()))
+	{
+		newton.setPosY(newton.getPosY() + 1);
+	}
 
+	newton.setPosY(newton.getPosY() - 1);
 }
 
 void MoveCharacter::events()
@@ -54,7 +59,18 @@ void MoveCharacter::events()
 
 void MoveCharacter::logic()
 {
+	newton.flip(mVelX < 0);
 	newton.setPosX(newton.getPosX() + mVelX);
+
+	while(collisionDetector.hasCollision(scene.getCollisionList(), newton.getCollisionList()))
+	{
+		newton.setPosY(newton.getPosY() - 1);
+	};
+
+	while(!collisionDetector.hasCollision(scene.getCollisionList(), newton.getCollisionList()))
+	{
+		newton.setPosY(newton.getPosY() + 1);
+	};
 }
 
 void MoveCharacter::render()

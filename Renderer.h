@@ -8,8 +8,8 @@
 
 class Renderer {
 	public:
-		static const int SCREEN_WIDTH = 1300;
-		static const int SCREEN_HEIGHT = 680;
+		static const int SCREEN_WIDTH = 1557;
+		static const int SCREEN_HEIGHT = 882;
 
 		Renderer();
 		~Renderer();

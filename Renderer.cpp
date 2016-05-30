@@ -26,7 +26,7 @@ bool Renderer::init() {
 	} 
 
 	this->gWindow = SDL_CreateWindow("Brutal Mentes!", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
-															SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+									SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
 
 	if(this->gWindow == NULL) {
 		printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );

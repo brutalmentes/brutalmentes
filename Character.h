@@ -2,6 +2,8 @@
 #define CHARACTER_H
 
 #include "Texture.h"
+#include "Circle.h"
+#include <list>
 
 class Character{
 	public:
@@ -13,12 +15,17 @@ class Character{
 
 		int getPosY();
 
-		void setPosX(int posX);
+		virtual void setPosX(int posX);
 
-		void setPosY(int posY);
+		virtual void setPosY(int posY);
 
 		Texture* getTexture();
+
+		void flip(bool willFlip);
+
+		std::list<Circle> getCollisionList();	
 	protected:
+		std::list<Circle> collisionList;
 		Texture* texture;
 };
 

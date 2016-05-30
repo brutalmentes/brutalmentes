@@ -33,3 +33,20 @@ Texture* Character::getTexture()
 {
 	return this->texture;
 }
+
+void Character::flip(bool willFlip)
+{
+	if(willFlip)
+	{
+		this->texture->setFlip(SDL_FLIP_HORIZONTAL);
+	}
+	else
+	{
+		this->texture->setFlip(SDL_FLIP_NONE);
+	}
+}
+
+std::list<Circle> Character::getCollisionList()
+{
+	return this->collisionList;
+}

@@ -6,12 +6,11 @@
 
 class Newton : public Character
 {
-private:	
-	std::list<Circle> collisionList;
 public:
+	void setPosX(int posX);
+	void setPosY(int posY);
+
 	Newton();
 	~Newton();
-
-	std::list<Circle> getCollisionList();	
 };
 

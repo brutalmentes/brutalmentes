@@ -1,6 +1,7 @@
 #include "Texture.h"
 
-Texture::Texture(string path, int posX, int posY) {
+Texture::Texture(string path, int posX, int posY) 
+{
 	this->path = path;
 	this->posX = posX;
 	this->posY = posY;
@@ -10,9 +11,11 @@ Texture::Texture(string path, int posX, int posY) {
 	this->currentFrame = 1;
 	this->spriteWidth = 0;
 	this->nFrames = 0;
+	this->flip = SDL_FLIP_NONE;
 }
 
-Texture::Texture(string path, int posX, int posY, bool isSprite, int spriteWidth, int nFrames) {
+Texture::Texture(string path, int posX, int posY, bool isSprite, int spriteWidth, int nFrames) 
+{
 	this->path = path;
 	this->posX = posX;
 	this->posY = posY;
@@ -24,35 +27,43 @@ Texture::Texture(string path, int posX, int posY, bool isSprite, int spriteWidth
 	this->nFrames = nFrames;
 }
 
-Texture::~Texture() {
+Texture::~Texture() 
+{
 	this->free();
 }
 
-int Texture::getPosX() {
+int Texture::getPosX() 
+{
 	return this->posX;
 }
 
-int Texture::getPosY() {
+int Texture::getPosY() 
+{
 	return this->posY;
 }
 
-void Texture::setPosX(int posX) {
+void Texture::setPosX(int posX) 
+{
 	this->posX = posX;
 }
 
-void Texture::setPosY(int posY) {
+void Texture::setPosY(int posY) 
+{
 	this->posY = posY;
 }
 
-Texture* Texture::getNext() {
+Texture* Texture::getNext()
+{
 	return this->next;
 }
 
-void Texture::setNext(Texture* newTexture) {
+void Texture::setNext(Texture* newTexture) 
+{
 	this->next = newTexture;
 }
 
-bool Texture::getIsSprite() {
+bool Texture::getIsSprite() 
+{
 	return this->isSprite;
 }
 
@@ -61,14 +72,19 @@ bool Texture::loadFromFile(SDL_Renderer* gRenderer) {
 	SDL_Texture* newTexture = NULL;
 
 	SDL_Surface* loadedSurface = IMG_Load(this->path.c_str());
-	if(loadedSurface == NULL) {
+	if(loadedSurface == NULL) 
+	{
 		printf("Unable to load image %s! SDL_image Error: %s\n", this->path.c_str(), IMG_GetError());
-	} else {
+	} 
+	else 
+	{
 		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
         		newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
-		if(newTexture == NULL) {
+		if(newTexture == NULL) 
+		{
 			printf("Unable to create texture from %s! SDL Error: %s\n", this->path.c_str(), SDL_GetError());
-		} else {
+		} 
+		else {
 			this->width = loadedSurface->w;
 			this->height = loadedSurface->h;
 		}
@@ -79,8 +95,10 @@ bool Texture::loadFromFile(SDL_Renderer* gRenderer) {
 	return this->sdlTexture != NULL;
 }
 
-void Texture::free() {
-	if(this->sdlTexture != NULL) {
+void Texture::free() 
+{
+	if(this->sdlTexture != NULL) 
+	{
 		SDL_DestroyTexture(this->sdlTexture);
 		this->sdlTexture = NULL;
 		this->width = 0;
@@ -88,27 +106,39 @@ void Texture::free() {
 	}
 }
 
-void Texture::render(SDL_Renderer* gRenderer, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip) {
+void Texture::setFlip(SDL_RendererFlip flip)
+{
+	this->flip = flip;
+}
+
+void Texture::render(SDL_Renderer* gRenderer, SDL_Rect* clip, double angle, SDL_Point* center) 
+{
 	SDL_Rect spriteRect;
 	
 	SDL_Rect renderQuad = {this->posX, this->posY, this->width, this->height};
 	
-	if(this->isSprite) {
+	if(this->isSprite) 
+	{
 		spriteRect.x = (this->currentFrame - 1) * this->spriteWidth;
 		spriteRect.y = 0;
 		spriteRect.w = this->spriteWidth;
 		spriteRect.h = this->height;
 		
-		if(this->currentFrame == this->nFrames) {
+		if(this->currentFrame == this->nFrames) 
+		{
 			this->currentFrame = 1;
-		} else {
+		} 
+		else 
+		{
 			this->currentFrame = this->currentFrame + 1;
 		}
 		renderQuad.w = spriteRect.w;
 		renderQuad.h = spriteRect.h;
 		
-		SDL_RenderCopyEx(gRenderer, this->sdlTexture, &spriteRect, &renderQuad, angle, center, flip);
-	} else {
-		SDL_RenderCopyEx(gRenderer, this->sdlTexture, clip, &renderQuad, angle, center, flip);
+		SDL_RenderCopyEx(gRenderer, this->sdlTexture, &spriteRect, &renderQuad, angle, center, this->flip);
+	} 
+	else 
+	{
+		SDL_RenderCopyEx(gRenderer, this->sdlTexture, clip, &renderQuad, angle, center, this->flip);
 	}
 }
