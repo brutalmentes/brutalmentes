@@ -1,6 +1,6 @@
 #ifndef TIMER_H
 #define TIMER_H
-
+#include <SDL2/SDL.h>
 //Para usar, inicializar um objeto da classe Timer
 //start() inicializa o contador do relogio
 //getTicks() retorna o tempo de relogio(dividir por 1000.f) -> para imprimir pode usar getTicks().str().c_str()
