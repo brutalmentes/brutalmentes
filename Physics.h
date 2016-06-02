@@ -5,7 +5,7 @@
 #include "Launch.h"
 #include "Btimer.h"
 
-#include <SDL_thread.h>
+#include <SDL2/SDL_thread.h>
 
 class Physics
 {

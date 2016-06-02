@@ -1,6 +1,7 @@
 #include "LoadCollisionMap.h"
 
 #include <fstream>
+#include <iostream>
 
 LoadCollisionMap::LoadCollisionMap()
 {
@@ -13,7 +14,7 @@ LoadCollisionMap::~LoadCollisionMap()
 
 list<Circle> LoadCollisionMap::load(string fileName)
 {
-	ifstream fin(fileName);
+	ifstream fin(fileName.c_str());
 	string line;
 
 	list<Circle> circlesList;

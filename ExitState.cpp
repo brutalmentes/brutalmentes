@@ -19,5 +19,5 @@ void ExitState::render()
 
 States ExitState::getName() 
 {
-	return States::STATE_EXIT;
+	return STATE_EXIT;
 }

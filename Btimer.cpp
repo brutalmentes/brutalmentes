@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string>
-#include <SDL.h>
-#include "btimer.h"
+#include <SDL2/SDL.h>
+#include "Btimer.h"
 
 #include <iostream>
 
