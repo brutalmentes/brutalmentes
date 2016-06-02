@@ -21,7 +21,7 @@ class Character{
 
 		Texture* getTexture();
 
-		void flip(bool willFlip);
+		void setOrientation(Orientation orientation);
 
 		std::list<Circle> getCollisionList();	
 	protected:

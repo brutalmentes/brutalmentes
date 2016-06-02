@@ -7,6 +7,11 @@
 
 using namespace std;
 
+enum Orientation {
+	ORIENTATION_LEFT,
+	ORIENTATION_RIGHT
+};
+
 class Texture {
 	public:
 		Texture(string path, int posX, int posY);

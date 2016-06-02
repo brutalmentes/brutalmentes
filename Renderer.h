@@ -2,14 +2,16 @@
 #define RENDERER_H
 
 #include "Texture.h"
+#include "Text.h"
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <iostream>
 
 class Renderer {
 	public:
-		static const int SCREEN_WIDTH = 1557;
-		static const int SCREEN_HEIGHT = 882;
+		static const int SCREEN_WIDTH = 1200;
+		static const int SCREEN_HEIGHT = 670;
 
 		Renderer();
 		~Renderer();
@@ -17,6 +19,7 @@ class Renderer {
 		bool init();
 
 		void addTexture(Texture* newTexture);
+		void addText(Text* newText);
 
 		void render();
 		void clear();
@@ -24,6 +27,7 @@ class Renderer {
 	private:
 		SDL_Renderer* gRenderer;
 		SDL_Window* gWindow;
+		TTF_Font *gFont;
 };
 
 #endif

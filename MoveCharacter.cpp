@@ -5,6 +5,7 @@
 #include "Renderer.h"
 #include "Newton.h"
 #include "Scene.h"
+#include "Button.h"
 #include <list>
 
 using namespace std;
@@ -15,15 +16,30 @@ extern CollisionDetector collisionDetector;
 
 int mVelX = 0;
 int DOT_VEL = 10;
+Orientation orientation = ORIENTATION_RIGHT;
+
+SDL_Color textColor = { 0, 0, 0 };
+Text *text;
 
 MoveCharacter::MoveCharacter()
 {
+	this->currentCharacter = &newton;
+	text = new Text("05:00", textColor, 530, 20);
+	
 	while(!collisionDetector.hasCollision(scene.getCollisionList(), newton.getCollisionList()))
 	{
 		newton.setPosY(newton.getPosY() + 1);
 	}
 
 	newton.setPosY(newton.getPosY() - 1);
+
+	while(!collisionDetector.hasCollision(scene.getCollisionList(), arquimedes.getCollisionList()))
+	{
+		arquimedes.setPosY(arquimedes.getPosY() + 1);
+	}
+
+	arquimedes.setPosY(arquimedes.getPosY() - 1);
+	arquimedes.setOrientation(ORIENTATION_LEFT);
 }
 
 void MoveCharacter::events()
@@ -41,8 +57,9 @@ void MoveCharacter::events()
 		{
 			switch(event.key.keysym.sym) 
 			{
-				case SDLK_LEFT: mVelX -= DOT_VEL; break;
-				case SDLK_RIGHT: mVelX += DOT_VEL; break;
+				case SDLK_ESCAPE: stateMachine.setState(States::STATE_EXIT); break;
+				case SDLK_LEFT: mVelX -= DOT_VEL; orientation = ORIENTATION_LEFT; break;
+				case SDLK_RIGHT: mVelX += DOT_VEL; orientation = ORIENTATION_RIGHT; break;
 			}
 		} 
 
@@ -54,22 +71,37 @@ void MoveCharacter::events()
 				case SDLK_RIGHT: mVelX -= DOT_VEL; break;
 			}
 		}
+
+		this->btnContinue.handleEvent(&event);
+
+		if(event.type == SDL_USEREVENT && event.user.code == EVENT_BUTTON_CLICKED)
+		{
+			if(this->currentCharacter == &newton)
+			{
+				orientation = ORIENTATION_LEFT;
+				this->currentCharacter = &arquimedes;
+			}
+			else
+			{
+				stateMachine.setState(States::STATE_EXIT);
+			}			
+		}
     }
 }
 
 void MoveCharacter::logic()
 {
-	newton.flip(mVelX < 0);
-	newton.setPosX(newton.getPosX() + mVelX);
+	currentCharacter->setOrientation(orientation);
+	currentCharacter->setPosX(currentCharacter->getPosX() + mVelX);
 
-	while(collisionDetector.hasCollision(scene.getCollisionList(), newton.getCollisionList()))
+	while(collisionDetector.hasCollision(scene.getCollisionList(), currentCharacter->getCollisionList()))
 	{
-		newton.setPosY(newton.getPosY() - 1);
+		currentCharacter->setPosY(currentCharacter->getPosY() - 1);
 	};
 
-	while(!collisionDetector.hasCollision(scene.getCollisionList(), newton.getCollisionList()))
+	while(!collisionDetector.hasCollision(scene.getCollisionList(), currentCharacter->getCollisionList()))
 	{
-		newton.setPosY(newton.getPosY() + 1);
+		currentCharacter->setPosY(currentCharacter->getPosY() + 1);
 	};
 }
 
@@ -78,6 +110,9 @@ void MoveCharacter::render()
 	renderer.clear();
 	renderer.addTexture(this->scene.getTexture());
 	renderer.addTexture(this->newton.getTexture());	
+	renderer.addTexture(this->arquimedes.getTexture());
+	renderer.addTexture(this->btnContinue.getTexture());
+	renderer.addText(text);
 	renderer.render();
 }
 

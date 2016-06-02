@@ -34,9 +34,9 @@ Texture* Character::getTexture()
 	return this->texture;
 }
 
-void Character::flip(bool willFlip)
+void Character::setOrientation(Orientation orientation)
 {
-	if(willFlip)
+	if(orientation == ORIENTATION_LEFT)
 	{
 		this->texture->setFlip(SDL_FLIP_HORIZONTAL);
 	}
