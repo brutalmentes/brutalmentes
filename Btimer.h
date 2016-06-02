@@ -1,7 +1,7 @@
 #ifndef BTIMER
 #define BTIMER
 
-#include <SDL_thread.h>
+#include <SDL2/SDL_thread.h>
 
 class Btimer
 {

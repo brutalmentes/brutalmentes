@@ -1,10 +1,10 @@
 /*This source code copyrighted by Lazy Foo' Productions (2004-2015)
 and may not be redistributed without written permission.*/
 
-#include <SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include <stdio.h>
 #include <string>
-#include <SDL_mixer.h>
+#include <SDL2/SDL_mixer.h>
 #include <iostream>
 #include "Physics.h"
 

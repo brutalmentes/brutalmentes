@@ -1,6 +1,6 @@
 
 #include <math.h>
-#include "launch.h"
+#include "Launch.h"
 #include <stdio.h>
 
 Launch::Launch()

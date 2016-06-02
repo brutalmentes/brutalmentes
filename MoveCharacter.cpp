@@ -34,7 +34,7 @@ void MoveCharacter::events()
     {
         if( event.type == SDL_QUIT )
         {
-			stateMachine.setState(States::STATE_EXIT);
+			stateMachine.setState(STATE_EXIT);
         }
 
 		if(event.type == SDL_KEYDOWN && event.key.repeat == 0) 
@@ -82,5 +82,5 @@ void MoveCharacter::render()
 }
 
 States MoveCharacter::getName() {
-	return States::STATE_MOVE_CHARACTER;
+	return STATE_MOVE_CHARACTER;
 }
