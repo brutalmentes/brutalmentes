@@ -59,7 +59,7 @@ void MoveCharacter::events()
 		{
 			switch(event.key.keysym.sym) 
 			{
-				case SDLK_ESCAPE: stateMachine.setState(States::STATE_EXIT); break;
+				case SDLK_ESCAPE: stateMachine.setState(STATE_EXIT); break;
 				case SDLK_LEFT: mVelX -= DOT_VEL; orientation = ORIENTATION_LEFT; break;
 				case SDLK_RIGHT: mVelX += DOT_VEL; orientation = ORIENTATION_RIGHT; break;
 			}
@@ -87,7 +87,7 @@ void MoveCharacter::events()
 			}
 			else
 			{
-				stateMachine.setState(States::STATE_EXIT);
+				stateMachine.setState(STATE_EXIT);
 			}			
 		}
     }
