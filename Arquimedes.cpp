@@ -3,7 +3,7 @@
 
 Arquimedes::Arquimedes()
 {
-	this->texture = new Texture("res/img/newton_stop.png", 1000, 200, true, 32, 8);
+	this->texture = new Texture("res/img/arquimedes_move.png", 1000, 200, true, 32, 2);
 
 	this->collisionList.push_back(Circle(this->getPosX(), this->getPosY(), 32));
 }
