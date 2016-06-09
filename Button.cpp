@@ -3,7 +3,12 @@
 #define BUTTON_WIDTH 126
 #define BUTTON_HEIGHT 40
 
-Button::Button(void)
+Button::Button(string path, int posX, int posY)
+{
+	this->texture = new Texture(path, posX, posY);
+}
+
+Button::Button()
 {
 	this->texture = new Texture("res/img/btn_continuar.png", 1064, 620);
 }

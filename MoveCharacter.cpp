@@ -28,7 +28,9 @@ Timer timer;
 MoveCharacter::MoveCharacter()
 {
 	this->currentCharacter = &newton;
-
+	this->btnAttack = new Button("res/img/btn_atacar.png", 449, 250);
+	this->btnDefense = new Button("res/img/btn_defender.png", 625, 250);
+	
 	ostringstream temp;
 	temp << "00:08";
 	text = new Text(temp.str().c_str(), textColor, 530, 20);
@@ -146,6 +148,8 @@ void MoveCharacter::render()
 	renderer.addTexture(this->newton.getTexture());	
 	renderer.addTexture(this->arquimedes.getTexture());
 	renderer.addTexture(this->btnContinue.getTexture());
+	renderer.addTexture(this->btnAttack->getTexture());
+	renderer.addTexture(this->btnDefense->getTexture());
 	renderer.addText(text);
 	renderer.render();
 }

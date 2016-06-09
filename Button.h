@@ -11,6 +11,7 @@ public:
 	Texture* getTexture();
 	void handleEvent(SDL_Event* e);
 
+	Button(string path, int posX, int posY);
 	Button();
 	~Button();
 };
