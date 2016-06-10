@@ -1,24 +1,25 @@
 #include "Object.h"
 
-Object::Object(float x, float y)
+Object::Object(float posX, float posY)
 {
     //Initialize the offsets
-    this->mPosX = x;
-    this->mPosY = y;
+    this->mPosX = posX;
+    this->mPosY = posY;
 
     //Initialize the velocity
     this->mVelX = 0;
     this->mVelY = 0;
 }
 
-void Object::setInitialSpeed(float velx, float vely){
-    this->mVelX = velx;
-    this->mVelY = vely;
+void Object::setInitialSpeed(float velX, float velY)
+{
+    this->mVelX = velX;
+    this->mVelY = velY;
 }
 
-void Object::moveAlone(float x, float y)
+void Object::moveAlone(float posX, float posY)
 {
-	mPosY = y;
-	mPosX = x;
+	mPosY = posY;
+	mPosX = posX;
 }
 

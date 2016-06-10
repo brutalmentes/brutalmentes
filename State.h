@@ -5,7 +5,8 @@
 enum States
 {
     STATE_MOVE_CHARACTER,
-    STATE_EXIT
+    STATE_EXIT,
+	STATE_ATTACKING
 };
 
 class State

@@ -12,16 +12,16 @@ class Object
 		static const int DOT_VEL = 10;
 
 		//Initializes the variables
-		Object(float,float);
+		Object(float posX, float posY);
 
 		//Takes key presses and adjusts the dot's velocity
 
 		//Moves the dot
-        void moveAlone(float ,float);
+        void moveAlone(float posX, float posY);
 		//Shows the dot on the screen
 		void render();
 
-		void setInitialSpeed(float,float);
+		void setInitialSpeed(float velX, float velY);
 
     //private:
 		//The X and Y offsets of the dot

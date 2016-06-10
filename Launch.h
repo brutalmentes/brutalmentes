@@ -9,7 +9,7 @@ class Launch
 
    public:
 	Launch();
- 	Launch(float , float  );
+ 	Launch(float force, float  angle);
 	void setAng(float );
  	float getAng(void);
  	float getForce();

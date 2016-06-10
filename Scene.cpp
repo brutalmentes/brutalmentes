@@ -1,7 +1,7 @@
 #include "Scene.h"
 #include "LoadCollisionMap.h"
 
-Scene::Scene(void)
+Scene::Scene()
 {
 	LoadCollisionMap lcm;
 

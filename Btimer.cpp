@@ -30,6 +30,7 @@ int Btimer:: threadFunction(void *data)
 	return 0;
 }
 
-float Btimer::getTime(){
+float Btimer::getTime()
+{
     return timeMs;
 }

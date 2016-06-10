@@ -11,7 +11,7 @@ and may not be redistributed without written permission.*/
 //Screen dimension constants
 Physics::Physics()
 {
-  	this->stp = true;
+  	this->mStop = true;
   	this->thread = SDL_CreateThread (threadFuncWrapper, NULL, this);
 }
 
@@ -19,19 +19,19 @@ Physics::~Physics()
 {
 }
 
-void Physics::start(Object* object, Launch* launch, Btimer* tempo)
+void Physics::start(Object* object, Launch* launch, Btimer* temporizador)
 {
     this->launch = launch;
     this->object = object;
-	this->stp = false;
-	this->tempo = tempo;
-	this->tempoInicial = tempo->getTime();
+	this->mStop = false;
+	this->temporizador = temporizador;
+	this->tempoInicial = temporizador->getTime();
     this->tempoAnt = 0;
 }
 
 void Physics::stop()
 {
- 	this->stp = true;
+ 	this->mStop = true;
 }
 
 void Physics::positionProcess( )
@@ -40,9 +40,9 @@ void Physics::positionProcess( )
 	{
 		float tmp = 0;
 
-        while(!stp)
+        while(!mStop)
         {
-            tmp = tempo->getTime() - tempoInicial;
+            tmp = temporizador->getTime() - tempoInicial;
 
             if(tmp != tempoAnt)
 			{

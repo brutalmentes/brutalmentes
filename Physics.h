@@ -12,16 +12,16 @@ class Physics
  private:
 	 Launch *launch;
 	 Object *object;
-	 bool stp;
+	 bool mStop;
 	 SDL_Thread *thread;
-	 Btimer *tempo;
+	 Btimer *temporizador;
 	 float tempoInicial;
 	 float tempoAnt;
 
  public:
        Physics();
        ~Physics();
-       void start(Object* object, Launch* launch, Btimer* tempo);
+       void start(Object* object, Launch* launch, Btimer* temporizador);
        void stop();
        void positionProcess();
        static int threadFuncWrapper(void *data);

@@ -18,19 +18,23 @@ int main(int argc, char *argv[])
 	{
 		stateMachine.setState(STATE_EXIT);
 	}
+	
+	//State* currentState = stateMachine.getCurrentState();
 
-	State* currentState = stateMachine.getCurrentState();
+	//while(currentState->getName() != STATE_EXIT)
+	//{
+	//	currentState->events();
+	//	currentState->logic();
+	//	currentState->render();
 
-	while(currentState->getName() != STATE_EXIT)
-	{
-		currentState->events();
-		currentState->logic();
-		currentState->render();
+	//	currentState = stateMachine.getCurrentState();
 
-		currentState = stateMachine.getCurrentState();
-	}
+	//	SDL_Delay(100);
+	//}
 
-	delete currentState;
+	SDL_Delay(100000);
+
+	//delete currentState;
 
 	return 0;
 }
