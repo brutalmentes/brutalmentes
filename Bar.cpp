@@ -1,24 +1,24 @@
-#include "healthBar.h"
+#include "Bar.h"
 #include <stdio.h>
 
-healthBar::healthBar()
+Bar::Bar()
 {
  	this->texture = new Texture("res/img/bar_verde.png", 1000, 200);
-/*	if(texture ==NULL)
+	if(texture ==NULL)
 	{
 		printf("valor null na testure");
-	}	*/
+	}	
 	texture->setWidth(30);	
 	texture->setHeight(10);
 }
 
 
-healthBar::~healthBar()
+Bar::~Bar()
 {
 	delete this->texture;
 }
 
-Texture* healthBar::getTexture()
+Texture* Bar::getTexture()
 {
 	return this->texture;
 }

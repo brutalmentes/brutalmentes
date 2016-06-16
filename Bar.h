@@ -1,12 +1,12 @@
 #include "Texture.h"
-class healthBar
+class Bar
 {
 private:
 	Texture *texture;
 
  public:
- healthBar();
- ~healthBar();
+ Bar();
+ ~Bar();
  Texture* getTexture();
 
 };
