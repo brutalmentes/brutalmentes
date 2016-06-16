@@ -53,6 +53,16 @@ void Texture::setPosY(int posY)
 	this->posY = posY;
 }
 
+void Texture::setWidth(int width) 
+{
+	this->width = width;
+}
+
+void Texture::setHeight(int height) 
+{
+	this->height = height;
+}
+
 Texture* Texture::getNext()
 {
 	return this->next;

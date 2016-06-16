@@ -27,13 +27,17 @@ class Texture {
 		void setPosX(int posX);
 
 		void setPosY(int posY);
+                
+                void setHeight(int);
+
+		void setWidth(int);
 
 		Texture* getNext();
 
 		void setNext(Texture* newTexture);
 		
 		bool getIsSprite();
-
+		
 		bool loadFromFile(SDL_Renderer* gRenderer);
 
 		void setFlip(SDL_RendererFlip flip);
