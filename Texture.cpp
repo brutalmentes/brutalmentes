@@ -43,6 +43,10 @@ int Texture::getPosY()
 	return this->posY;
 }
 
+int Texture::getWidth() {
+	return this->width;
+} 
+
 void Texture::setPosX(int posX) 
 {
 	this->posX = posX;

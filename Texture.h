@@ -24,6 +24,8 @@ class Texture {
 
 		int getPosY();
 
+		int getWidth();
+
 		void setPosX(int posX);
 
 		void setPosY(int posY);

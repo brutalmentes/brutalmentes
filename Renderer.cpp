@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include <stdio.h>
 
 using namespace std;
 
@@ -71,6 +72,13 @@ void Renderer::clear() {
 
 void Renderer::addTexture(Texture* newTexture) {
 	newTexture->loadFromFile(this->gRenderer);
+	newTexture->render(this->gRenderer);
+}
+
+void Renderer::addTextureWithSize(Texture* newTexture, int width, int height) {
+	newTexture->loadFromFile(this->gRenderer);
+	newTexture->setWidth(width);
+	newTexture->setHeight(height);
 	newTexture->render(this->gRenderer);
 }
 

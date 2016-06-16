@@ -19,6 +19,9 @@ class Renderer {
 		bool init();
 
 		void addTexture(Texture* newTexture);
+		
+		void addTextureWithSize(Texture* newTexture, int width, int height);
+
 		void addText(Text* newText);
 
 		void render();

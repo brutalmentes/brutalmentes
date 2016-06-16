@@ -30,7 +30,7 @@ MoveCharacter::MoveCharacter()
 	this->currentCharacter = &newton;
 	this->btnAttack = new Button("res/img/btn_atacar.png", 449, 250);
 	this->btnDefense = new Button("res/img/btn_defender.png", 625, 250);
-	
+
 	ostringstream temp;
 	temp << "00:08";
 	text = new Text(temp.str().c_str(), textColor, 530, 20);
