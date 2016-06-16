@@ -1,4 +1,5 @@
 #include "Texture.h"
+#include <stdio.h>
 
 Texture::Texture(string path, int posX, int posY) 
 {
