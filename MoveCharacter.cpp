@@ -20,7 +20,7 @@ extern Audio audio;
 
 int mVelX = 0;
 int DOT_VEL = 4;
-Orientation orientation = ORIENTATION_RIGHT;
+Orientation orientation = ORIENTATION_LEFT;
 SDL_Color textColor = { 0, 0, 0 };
 Text *text;
 Timer timer;
@@ -28,9 +28,11 @@ Timer timer;
 MoveCharacter::MoveCharacter()
 {
 	this->currentCharacter = &newton;
-	this->btnAttack = new Button("res/img/btn_atacar.png", 449, 250);
-	this->btnDefense = new Button("res/img/btn_defender.png", 625, 250);
-	this->healthBar = new Bar();
+	// this->btnAttack = new Button("res/img/btn_atacar.png", 449, 250);
+	// this->btnDefense = new Button("res/img/btn_defender.png", 625, 250);
+	this->healthBar_newton = new Bar(800, 20);
+	this->healthBar_arquimedes = new Bar(100, 20);
+
 	ostringstream temp;
 	temp << "00:08";
 	text = new Text(temp.str().c_str(), textColor, 530, 20);
@@ -47,10 +49,10 @@ MoveCharacter::MoveCharacter()
 		arquimedes.setPosY(arquimedes.getPosY() + 1);
 	}
 
-	timer.start();
-
 	arquimedes.setPosY(arquimedes.getPosY() - 1);
-	arquimedes.setOrientation(ORIENTATION_LEFT);
+	arquimedes.setOrientation(ORIENTATION_RIGHT);
+
+	timer.start();
 }
 
 void MoveCharacter::events()
@@ -58,25 +60,24 @@ void MoveCharacter::events()
 	SDL_Event event;
 
 	while( SDL_PollEvent( &event ) )
+  {
+    if( event.type == SDL_QUIT )
     {
-        if( event.type == SDL_QUIT )
-        {
 			stateMachine.setState(STATE_EXIT);
-        }
+    }
 
 		if(event.type == SDL_KEYDOWN && event.key.repeat == 0) 
 		{
 			switch(event.key.keysym.sym) 
 			{
 				case SDLK_ESCAPE: stateMachine.setState(STATE_EXIT); break;
-				case SDLK_LEFT: mVelX -= DOT_VEL; orientation = ORIENTATION_LEFT; break;
-				case SDLK_RIGHT: mVelX += DOT_VEL; orientation = ORIENTATION_RIGHT; break;
+				case SDLK_LEFT: mVelX -= DOT_VEL; orientation = ORIENTATION_RIGHT; break;
+				case SDLK_RIGHT: mVelX += DOT_VEL; orientation = ORIENTATION_LEFT; break;
 			}
 		} 
 
 		if(event.type == SDL_KEYUP && event.key.repeat == 0) 
 		{
-			this->newton.decHealth();
 			switch(event.key.keysym.sym) 
 			{
 				case SDLK_LEFT: mVelX += DOT_VEL; break;
@@ -92,7 +93,7 @@ void MoveCharacter::events()
 
 			if(this->currentCharacter == &newton)
 			{
-				orientation = ORIENTATION_LEFT;
+				orientation = ORIENTATION_RIGHT;
 				this->currentCharacter = &arquimedes;
 				timer.stop();
 				timer.start();
@@ -102,7 +103,7 @@ void MoveCharacter::events()
 				stateMachine.setState(STATE_EXIT);
 			}			
 		}
-    }
+  }
 }
 
 void MoveCharacter::logic()
@@ -149,10 +150,11 @@ void MoveCharacter::render()
 	renderer.addTexture(this->newton.getTexture());	
 	renderer.addTexture(this->arquimedes.getTexture());
 	renderer.addTexture(this->btnContinue.getTexture());
-	renderer.addTexture(this->btnAttack->getTexture());
-	renderer.addTexture(this->btnDefense->getTexture());
+	// renderer.addTexture(this->btnAttack->getTexture());
+	// renderer.addTexture(this->btnDefense->getTexture());
 	renderer.addText(text);
-	renderer.addTextureWithSize(this->healthBar->getTexture(this->newton.getLevel()),this->newton.getHealth(),10);
+	renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->newton.getLevel()),this->newton.getHealth(),30);
+	renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->arquimedes.getLevel()),this->arquimedes.getHealth(),30);
 	renderer.render();
 }
 

@@ -5,8 +5,8 @@
 class Arquimedes : public Character
 {
 private:
-
-int health;
+	int health;
+	int level;
 
 public:
 	void setPosX(int posX);
@@ -14,7 +14,7 @@ public:
 	int getHealth();
 	void setHealth(int);
 	void decHealth();
-
+	int getLevel();
 	Arquimedes();
 	~Arquimedes();
 };

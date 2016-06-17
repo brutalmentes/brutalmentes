@@ -16,7 +16,7 @@ class Texture {
 	public:
 		Texture(string path, int posX, int posY);
 
-		Texture(string path, int posX, int posY, bool isSprite, int spriteWidth, int nFrames);
+		Texture(string path, int posX, int posY, bool isSprite, float spriteWidth, int nFrames);
 		
 		~Texture();
 

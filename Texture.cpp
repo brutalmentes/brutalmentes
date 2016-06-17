@@ -15,7 +15,7 @@ Texture::Texture(string path, int posX, int posY)
 	this->flip = SDL_FLIP_NONE;
 }
 
-Texture::Texture(string path, int posX, int posY, bool isSprite, int spriteWidth, int nFrames) 
+Texture::Texture(string path, int posX, int posY, bool isSprite, float spriteWidth, int nFrames) 
 {
 	this->path = path;
 	this->posX = posX;

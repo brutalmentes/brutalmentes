@@ -17,9 +17,10 @@ private:
 	Arquimedes arquimedes;
 	Scene scene;
 	Button btnContinue;
-	Button *btnAttack;
-	Button *btnDefense;
- 	Bar *healthBar;		
+	// Button *btnAttack;
+	// Button *btnDefense;
+ 	Bar *healthBar_newton;
+ 	Bar *healthBar_arquimedes;		
 	Character *currentCharacter;
 
 public:

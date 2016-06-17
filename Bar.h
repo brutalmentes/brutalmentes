@@ -9,7 +9,7 @@ private:
 	Texture *textureRed;
 */	
  public:
- Bar();
+ Bar(int, int);
  ~Bar();
  Texture* getTexture(int);
  void setWidth(int id, int width);

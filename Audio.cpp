@@ -20,8 +20,6 @@ Audio::Audio()
 	this->track12="audio/SG03.wav";
 	this->track13="audio/SG05.wav";
 
-	printf("haha");
-
 	Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 );
 	if(!loadAudio())	
 	{
