@@ -32,3 +32,33 @@ void Arquimedes::setPosY(int posY)
 	c.y = posY;
 	this->collisionList.push_back(c);
 }
+
+
+int Arquimedes::getHealth()
+{
+
+ return this->health;
+
+}
+
+void Arquimedes::setHealth(int health)
+{
+
+ this->health=health;
+
+}
+void Arquimedes::decHealth()
+{
+ 
+ if(health >= 10)
+ {
+ 	this->health-=10;
+ }
+ else
+ {
+
+  health=0;
+
+ }
+
+}
