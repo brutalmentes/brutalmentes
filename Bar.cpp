@@ -3,35 +3,28 @@
 
 Bar::Bar()
 {
- 	this->texture = new Texture("res/img/bar_verde.png", 1000, 200);
-	if(texture ==NULL)
+ 	this->textures[3] = new Texture("res/img/bar_verde.png", 1000, 200);
+        this->textures[2]= new Texture("res/img/bar_amarela.png", 1000, 200);
+	this->textures[1]= new Texture("res/img/bar_laranja.png", 1000, 200);
+	this->textures[0]   = new Texture("res/img/bar_vermelha.png", 1000, 200);	
+	if(textures ==NULL)
 	{
-		printf("valor null na testure");
+		printf("valor null na texture");
 	}
 }
 
 
 Bar::~Bar()
 {
-	delete this->texture;
+	delete this->textures;
 }
 
-Texture* Bar::getTexture()
+Texture* Bar::getTexture(int id)
 {
-	return this->texture;
-}
-
-void Bar::setWidth(int width) 
-{
-	this->texture->setWidth(width);
-}
-
-void Bar::setHeight(int height) 
-{
-	this->texture->setHeight(height);
+	
+	return this->textures[id];
+	
+ 
 }
 
 
-int Bar::getWidth() {
-	return this->texture->getWidth();
-}
