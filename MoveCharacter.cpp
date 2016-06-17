@@ -30,7 +30,7 @@ MoveCharacter::MoveCharacter()
 	this->currentCharacter = &newton;
 	this->btnAttack = new Button("res/img/btn_atacar.png", 449, 250);
 	this->btnDefense = new Button("res/img/btn_defender.png", 625, 250);
-
+	this->healthBar = new Bar();
 	ostringstream temp;
 	temp << "00:08";
 	text = new Text(temp.str().c_str(), textColor, 530, 20);
@@ -76,6 +76,7 @@ void MoveCharacter::events()
 
 		if(event.type == SDL_KEYUP && event.key.repeat == 0) 
 		{
+			this->newton.decHealth();
 			switch(event.key.keysym.sym) 
 			{
 				case SDLK_LEFT: mVelX += DOT_VEL; break;
@@ -151,6 +152,7 @@ void MoveCharacter::render()
 	renderer.addTexture(this->btnAttack->getTexture());
 	renderer.addTexture(this->btnDefense->getTexture());
 	renderer.addText(text);
+	renderer.addTextureWithSize(this->healthBar->getTexture(this->newton.getLevel()),this->newton.getHealth(),10);
 	renderer.render();
 }
 

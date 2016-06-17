@@ -8,6 +8,7 @@
 #include "Character.h"
 #include "Scene.h"
 #include "Button.h"
+#include "Bar.h"
 
 class MoveCharacter : public State
 {
@@ -18,7 +19,7 @@ private:
 	Button btnContinue;
 	Button *btnAttack;
 	Button *btnDefense;
-	
+ 	Bar *healthBar;		
 	Character *currentCharacter;
 
 public:
