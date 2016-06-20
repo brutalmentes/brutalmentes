@@ -4,7 +4,7 @@
 Arquimedes::Arquimedes()
 {
 	this->texture = new Texture("res/img/arquimedes_parado.png", 1000, 200, true, (355/4), 4);
-	this->health = 300;
+	this->health = healthChars;
 	this->collisionList.push_back(Circle(this->getPosX(), this->getPosY(), 44));
 	this->level=3;
 }

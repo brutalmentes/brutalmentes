@@ -2,6 +2,8 @@
 
 #include "Character.h"
 
+extern int healthChar;
+
 class Arquimedes : public Character
 {
 private:

@@ -3,6 +3,8 @@
 #include "Character.h"
 #include "Circle.h"
 #include <list>
+
+extern int healthChar;
 class Newton : public Character
 {
 private:

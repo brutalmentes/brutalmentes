@@ -3,7 +3,7 @@
 Newton::Newton() : Character()
 {
 	this->texture = new Texture("res/img/newtonParado.png", 100, 800, true, 52, 22);
-	this->health = 300;
+	this->health = healthChars;
 	this->collisionList.push_back(Circle(this->getPosX(), this->getPosY(), 32));
 	this->level=3;
 }
