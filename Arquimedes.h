@@ -1,22 +1,15 @@
 #pragma once
 
 #include "Character.h"
-
-extern int healthChar;
-
+#include "Health.h"
 class Arquimedes : public Character
 {
 private:
-	int health;
-	int level;
-
+	Health *health;
 public:
 	void setPosX(int posX);
 	void setPosY(int posY);
-	int getHealth();
-	void setHealth(int);
-	void decHealth();
-	int getLevel();
+	Health* getHealt():	
 	Arquimedes();
 	~Arquimedes();
 };

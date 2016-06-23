@@ -5,8 +5,6 @@
 #include "Circle.h"
 #include <list>
 
-const int healthChars =300;
-
 class Character{
 	public:
 		Character();

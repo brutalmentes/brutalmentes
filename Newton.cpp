@@ -3,9 +3,9 @@
 Newton::Newton() : Character()
 {
 	this->texture = new Texture("res/img/newtonParado.png", 100, 800, true, 52, 22);
-	this->health = healthChars;
+	this->health=new Health();
 	this->collisionList.push_back(Circle(this->getPosX(), this->getPosY(), 32));
-	this->level=3;
+	
 }
 
 
@@ -34,32 +34,6 @@ void Newton::setPosY(int posY)
 	this->collisionList.push_back(c);
 }
 
-int Newton::getHealth()
-{
-	return this->health;
-}
 
-int Newton::getLevel()
-{
-	return this->level;
-}
 
-void Newton::setHealth(int health)
-{
-	this->health = health;
-}
-void Newton::decHealth()
-{
- 
-	if(health > 10)
-	{
- 		this->health-=10;
-		if(this->level >= 1)	
-			this->level-=1;
-	}
-	else
- 	{
-  	health=0;
- 	}
-}
 

@@ -153,8 +153,8 @@ void MoveCharacter::render()
 	// renderer.addTexture(this->btnAttack->getTexture());
 	// renderer.addTexture(this->btnDefense->getTexture());
 	renderer.addText(text);
-	renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->newton.getLevel()),this->newton.getHealth(),30);
-	renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->arquimedes.getLevel()),this->arquimedes.getHealth(),30);
+	renderer.addTextureWithSize(this->healthBar_newton->getTexture(newton->health.getLevel()),newton->health.getHealth(),30);
+	renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(arquimedes.health.getLevel()),arquimedes.health.getHealth(),30);
 	renderer.render();
 }
 
