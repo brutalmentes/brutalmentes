@@ -17,7 +17,7 @@ extern Game game;
  
 int mVelX = 0;
 int DOT_VEL = 4;
-Orientation orientation = ORIENTATION_RIGHT;
+Orientation orientation = ORIENTATION_LEFT;
 SDL_Color textColor = { 0, 0, 0 };
 Text *text;
 Timer timer;
@@ -27,9 +27,8 @@ MoveCharacter::MoveCharacter()
     this->currentCharacter = &newton;
     this->btnAttack = new Button(BTN_ATTACK, "res/img/btn_atacar.png", 449, 250);
     this->btnDefense = new Button(BTN_DEFENSE, "res/img/btn_defender.png", 625, 250);
-    
-	//this->healthBar_newton = new Bar(800, 20);
-    //this->healthBar_arquimedes = new Bar(100, 20);
+		this->healthBar_newton = new Bar(100, 20);
+    this->healthBar_arquimedes = new Bar(800, 20);
 	
     ostringstream temp;
     temp << "00:08";
@@ -50,7 +49,7 @@ MoveCharacter::MoveCharacter()
     timer.start();
  
     arquimedes.setPosY(arquimedes.getPosY() - 1);
-    arquimedes.setOrientation(ORIENTATION_LEFT);
+    arquimedes.setOrientation(ORIENTATION_RIGHT);
 }
  
 void MoveCharacter::events()
@@ -69,8 +68,8 @@ void MoveCharacter::events()
             switch(event.key.keysym.sym) 
             {
                 case SDLK_ESCAPE: game.stateMachine.setState(STATE_EXIT); break;
-                case SDLK_LEFT: mVelX -= DOT_VEL; orientation = ORIENTATION_LEFT; break;
-                case SDLK_RIGHT: mVelX += DOT_VEL; orientation = ORIENTATION_RIGHT; break;
+                case SDLK_LEFT: mVelX -= DOT_VEL; orientation = ORIENTATION_RIGHT; break;
+                case SDLK_RIGHT: mVelX += DOT_VEL; orientation = ORIENTATION_LEFT; break;
             }
         } 
  
@@ -158,8 +157,8 @@ void MoveCharacter::render()
     game.renderer.addTexture(this->btnAttack->getTexture());
     game.renderer.addTexture(this->btnDefense->getTexture());
     game.renderer.addText(text);
-    //game.renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->newton.getLevel()),this->newton.getHealth(),30);
-    //game.renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->arquimedes.getLevel()),this->arquimedes.getHealth(),30);
+    game.renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->newton.getLevel()),this->newton.getHealth(),30);
+    game.renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->arquimedes.getLevel()),this->arquimedes.getHealth(),30);
     game.renderer.render();
 }
  
