@@ -7,16 +7,13 @@
 #include "Scene.h"
 #include "Button.h"
 #include "Timer.h"
-#include "Audio.h"
+#include "game.hpp"
 #include <list>
 #include <sstream>
 
 using namespace std;
 
-extern StateMachine stateMachine;
-extern Renderer renderer;
-extern CollisionDetector collisionDetector;
-extern Audio audio;
+extern Game game;
 
 int mVelX = 0;
 int DOT_VEL = 4;
@@ -28,8 +25,8 @@ Timer timer;
 MoveCharacter::MoveCharacter()
 {
 	this->currentCharacter = &newton;
-	// this->btnAttack = new Button("res/img/btn_atacar.png", 449, 250);
-	// this->btnDefense = new Button("res/img/btn_defender.png", 625, 250);
+	// this->btnAttack = new Button("/Users/matheusbitaraesdenovaes/Documents/UFMG/brutalmentes-integration/BrutalmentesV2/BrutalmentesV2/res/img/btn_atacar.png", 449, 250);
+	// this->btnDefense = new Button("/Users/matheusbitaraesdenovaes/Documents/UFMG/brutalmentes-integration/BrutalmentesV2/BrutalmentesV2/res/img/btn_defender.png", 625, 250);
 	this->healthBar_newton = new Bar(800, 20);
 	this->healthBar_arquimedes = new Bar(100, 20);
 
@@ -37,14 +34,14 @@ MoveCharacter::MoveCharacter()
 	temp << "00:08";
 	text = new Text(temp.str().c_str(), textColor, 530, 20);
 	
-	while(!collisionDetector.hasCollision(scene.getCollisionList(), newton.getCollisionList()))
+	while(!game.collisionDetector.hasCollision(scene.getCollisionList(), newton.getCollisionList()))
 	{
 		newton.setPosY(newton.getPosY() + 1);
 	}
 
 	newton.setPosY(newton.getPosY() - 1);
 
-	while(!collisionDetector.hasCollision(scene.getCollisionList(), arquimedes.getCollisionList()))
+	while(!game.collisionDetector.hasCollision(scene.getCollisionList(), arquimedes.getCollisionList()))
 	{
 		arquimedes.setPosY(arquimedes.getPosY() + 1);
 	}
@@ -63,14 +60,14 @@ void MoveCharacter::events()
   {
     if( event.type == SDL_QUIT )
     {
-			stateMachine.setState(STATE_EXIT);
+			game.stateMachine.setState(STATE_EXIT);
     }
 
 		if(event.type == SDL_KEYDOWN && event.key.repeat == 0) 
 		{
 			switch(event.key.keysym.sym) 
 			{
-				case SDLK_ESCAPE: stateMachine.setState(STATE_EXIT); break;
+				case SDLK_ESCAPE: game.stateMachine.setState(STATE_EXIT); break;
 				case SDLK_LEFT: mVelX -= DOT_VEL; orientation = ORIENTATION_RIGHT; break;
 				case SDLK_RIGHT: mVelX += DOT_VEL; orientation = ORIENTATION_LEFT; break;
 			}
@@ -89,7 +86,7 @@ void MoveCharacter::events()
 
 		if(event.type == SDL_USEREVENT && event.user.code == EVENT_BUTTON_CLICKED)
 		{
-			audio.playSound("SG03", 0);
+			game.audio.playSound("SG03", 0);
 
 			if(this->currentCharacter == &newton)
 			{
@@ -100,7 +97,7 @@ void MoveCharacter::events()
 			}
 			else
 			{
-				stateMachine.setState(STATE_EXIT);
+				game.stateMachine.setState(STATE_EXIT);
 			}			
 		}
   }
@@ -115,7 +112,7 @@ void MoveCharacter::logic()
 
 	if(currentCharacter == &arquimedes)
 	{
-		audio.playSound("M03", 0);
+		game.audio.playSound("M03", 0);
 	}
 
 	if((timer.getTicks()/1000) > 8) 
@@ -132,12 +129,12 @@ void MoveCharacter::logic()
 	currentCharacter->setOrientation(orientation);
 	currentCharacter->setPosX(currentCharacter->getPosX() + mVelX);
 
-	while(collisionDetector.hasCollision(scene.getCollisionList(), currentCharacter->getCollisionList()))
+	while(game.collisionDetector.hasCollision(scene.getCollisionList(), currentCharacter->getCollisionList()))
 	{
 		currentCharacter->setPosY(currentCharacter->getPosY() - 1);
 	};
 
-	while(!collisionDetector.hasCollision(scene.getCollisionList(), currentCharacter->getCollisionList()))
+	while(!game.collisionDetector.hasCollision(scene.getCollisionList(), currentCharacter->getCollisionList()))
 	{
 		currentCharacter->setPosY(currentCharacter->getPosY() + 1);
 	};
@@ -145,17 +142,17 @@ void MoveCharacter::logic()
 
 void MoveCharacter::render()
 {	
-	renderer.clear();
-	renderer.addTexture(this->scene.getTexture());
-	renderer.addTexture(this->newton.getTexture());	
-	renderer.addTexture(this->arquimedes.getTexture());
-	renderer.addTexture(this->btnContinue.getTexture());
+	game.renderer.clear();
+	game.renderer.addTexture(this->scene.getTexture());
+	game.renderer.addTexture(this->newton.getTexture());
+	game.renderer.addTexture(this->arquimedes.getTexture());
+	game.renderer.addTexture(this->btnContinue.getTexture());
 	// renderer.addTexture(this->btnAttack->getTexture());
 	// renderer.addTexture(this->btnDefense->getTexture());
-	renderer.addText(text);
-	renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->newton.getLevel()),this->newton.getHealth(),30);
-	renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->arquimedes.getLevel()),this->arquimedes.getHealth(),30);
-	renderer.render();
+	game.renderer.addText(text);
+	game.renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->newton.getLevel()),this->newton.getHealth(),30);
+	game.renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->arquimedes.getLevel()),this->arquimedes.getHealth(),30);
+	game.renderer.render();
 }
 
 States MoveCharacter::getName() {
