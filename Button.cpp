@@ -1,40 +1,42 @@
 #include "Button.h"
-
+ 
 #define BUTTON_WIDTH 126
 #define BUTTON_HEIGHT 40
-
-Button::Button(string path, int posX, int posY)
+ 
+Button::Button(int id, string path, int posX, int posY)
 {
-	this->texture = new Texture(path, posX, posY);
+    this->id = id;
+    this->texture = new Texture(path, posX, posY);
 }
-
+ 
 Button::Button()
 {
-	this->texture = new Texture("res/img/btn_continuar.png", 1064, 620);
+    this->id = 3;
+    this->texture = new Texture("res/img/btn_continuar.png", 1064, 620);
 }
-
+ 
 Button::~Button(void)
 {
-	delete this->texture;
+    delete this->texture;
 }
-
+ 
 Texture* Button::getTexture()
 {
-	return this->texture;
+    return this->texture;
 }
-
+ 
 void Button::handleEvent(SDL_Event* e)
 {
-	if(e->type == SDL_MOUSEBUTTONDOWN)
-	{
-		//Get mouse position
+    if(e->type == SDL_MOUSEBUTTONDOWN)
+    {
+        //Get mouse position
         int x, y;
         SDL_GetMouseState( &x, &y );
-
-		bool inside = true;
-
+ 
+        bool inside = true;
+ 
         //Mouse is left of the button
-		if( x < this->texture->getPosX() )
+        if( x < this->texture->getPosX() )
         {
             inside = false;
         }
@@ -53,13 +55,13 @@ void Button::handleEvent(SDL_Event* e)
         {
             inside = false;
         }
-
-		if(inside)
-		{
-			SDL_Event event;
-			event.type = SDL_USEREVENT;
-			event.user.code = EVENT_BUTTON_CLICKED;
-			SDL_PushEvent(&event);
-		}
-	}
+ 
+        if(inside)
+        {
+            SDL_Event event;
+            event.type = SDL_USEREVENT;
+            event.user.code = this->id;
+            SDL_PushEvent(&event);
+        }
+    }
 }
