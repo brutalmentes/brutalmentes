@@ -23,6 +23,7 @@ public:
 	AttackState();
 
 	States getName();
+	void onEnter();
 	void events();
 	void logic();
 	void render();

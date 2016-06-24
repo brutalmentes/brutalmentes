@@ -1,6 +1,6 @@
 #include "StateMachine.h"
 #include "ExitState.h"
-#include "MoveCharacter.h"
+#include "Attacking.h"
 
 State* StateMachine::getCurrentState()
 {
@@ -17,7 +17,7 @@ void StateMachine::setState(States state)
 
 StateMachine::StateMachine()
 {
-	this->currentState = new MoveCharacter();
+	this->currentState = new Attacking();
 }
 
 StateMachine::~StateMachine()

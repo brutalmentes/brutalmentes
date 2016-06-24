@@ -46,11 +46,12 @@ void Physics::positionProcess( )
 
             if(tmp != tempoAnt)
 			{
-                object->mPosX=launch->getNextPositionX(object->mPosX,launch->getNextSpeedX(),tmp);
-                object->mPosY=launch->getNextPositionY(object->mPosY,launch->getNextSpeedY(object->mVelY,-(launch->getForce())*0.5f,tmp),tmp);
+                object->setPosX(launch->getNextPositionX(object->getPosX(),launch->getNextSpeedX(),tmp));
+                object->setPosY(launch->getNextPositionY(object->getPosY(),
+                    launch->getNextSpeedY(object->mVelY,-(launch->getForce())*0.5f,tmp),tmp));
                 std::cout << "Tempo: "<< tmp << "\n";
-                std::cout << "mPosx: "<< object->mPosX << "\n";
-                std::cout << "mPosy: " << object->mPosY << "\n";
+                std::cout << "mPosx: "<< object->getPosX() << "\n";
+                std::cout << "mPosy: " << object->getPosY() << "\n";
                 tempoAnt = tmp;
             }
         }

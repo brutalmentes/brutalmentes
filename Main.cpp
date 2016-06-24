@@ -1,4 +1,3 @@
-
 #include <string>
 #include "Game.hpp"
 
@@ -12,8 +11,8 @@ int main(int argc, char *argv[])
     Newton newton;
     list<Character> team1,team2;
     
-    team1.push_front(newton);
-    team2.push_front(arquimedes);
+    team1.push_back(newton);
+    team2.push_back(arquimedes);
     
     // cria as equipes
     game.createTeams(team1,team2);
@@ -25,6 +24,9 @@ int main(int argc, char *argv[])
     }
     
     State* currentState = game.stateMachine.getCurrentState();
+    State* newState;
+
+    currentState->onEnter();
     
     while(currentState->getName() != STATE_EXIT)
     {
@@ -36,7 +38,13 @@ int main(int argc, char *argv[])
         currentState->logic();
         currentState->render();
         
-        currentState = game.stateMachine.getCurrentState();
+        newState = game.stateMachine.getCurrentState();
+
+        if(newState->getName() != currentState->getName()) 
+        {
+            currentState = newState;
+            currentState->onEnter();
+        }
     }
     
     delete currentState;

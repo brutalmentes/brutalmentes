@@ -5,6 +5,10 @@ ExitState::ExitState()
 {
 }
 
+void ExitState::onEnter()
+{
+}
+
 void ExitState::events()
 {
 }

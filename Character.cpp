@@ -38,11 +38,11 @@ void Character::setOrientation(Orientation orientation)
 {
 	if(orientation == ORIENTATION_LEFT)
 	{
-		this->texture->setFlip(SDL_FLIP_HORIZONTAL);
+		this->texture->setFlip(SDL_FLIP_NONE);		
 	}
 	else
 	{
-		this->texture->setFlip(SDL_FLIP_NONE);
+		this->texture->setFlip(SDL_FLIP_HORIZONTAL);
 	}
 }
 

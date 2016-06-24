@@ -27,6 +27,7 @@ public:
 	MoveCharacter();
 
 	States getName();
+	void onEnter();
 	void events();
 	void logic();
 	void render();

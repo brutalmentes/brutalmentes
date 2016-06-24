@@ -1,8 +1,14 @@
 #ifndef OBJECT
 #define OBJECT
 
+#include "Texture.h"
+
 class Object
 {
+	private:
+		Texture *texture;
+		//The X and Y offsets of the dot
+		float mPosX, mPosY;
     public:
 		//The dimensions of the dot
 		static const int DOT_WIDTH = 20;
@@ -23,12 +29,16 @@ class Object
 
 		void setInitialSpeed(float,float);
 
-    //private:
-		//The X and Y offsets of the dot
-		float mPosX, mPosY;
+    	void setPosX(float posX);
+    	void setPosY(float posY);
 
+    	float getPosX();
+    	float getPosY();
+		
 		//The velocity of the dot
 		float mVelX, mVelY;
+
+		Texture* getTexture();
 };
 
 #endif

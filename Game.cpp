@@ -54,21 +54,21 @@ void Game::createTeams(list<Character> team1, list<Character> team2)
     // adiciona jogadores ao time 1
     for (list<Character>::iterator it = team1.begin(); it != team1.end(); it++)
     {
-        this->team1.push_front(*it);
+        this->team1.push_back(*it);
     }
     
     // adiciona jogadores ao time 2
     for (list<Character>::iterator it = team2.begin(); it != team2.end(); it++)
     {
-        this->team2.push_front(*it);
+        this->team2.push_back(*it);
     }
     
     // intercala os jogadores em uma lista
     list<Character>::iterator it2 = team2.begin();
     for (list<Character>::iterator it1 = team1.begin(); it1 != team1.end(); it1++)
     {
-        this->playerSequency.push_front(*it1);
-        this->playerSequency.push_front(*it2);
+        this->playerSequency.push_back(*it1);
+        this->playerSequency.push_back(*it2);
         it2++;
     }
 }

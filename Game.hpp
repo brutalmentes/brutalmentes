@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <list>
+#include <vector>
 #include "StateMachine.h"
 #include "Renderer.h"
 #include "CollisionDetector.h"
@@ -11,6 +12,7 @@
 #include "Audio.h"
 #include "Newton.h"
 #include "Arquimedes.h"
+#include "Scene.h"
 //#include "player.h"
 
 using namespace std;
@@ -18,14 +20,15 @@ using namespace std;
 class Game
 {
 public:
-    list<Character> team1; //os times devem ter o mesmo numero de jogadores
-    list<Character> team2;
+    vector<Character> team1; //os times devem ter o mesmo numero de jogadores
+    vector<Character> team2;
     list<Character> playerSequency;
     int winnerTeam;
     Renderer renderer;
     CollisionDetector collisionDetector;
     Audio audio;
     StateMachine stateMachine;
+    Scene scene;
     
     //Game(list<Character> team1,list<Character> team2); //minimo 2 jogadores
     Game();

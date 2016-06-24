@@ -7,7 +7,7 @@
 #include "Scene.h"
 #include "Button.h"
 #include "Timer.h"
-#include "game.hpp"
+#include "Game.hpp"
 #include <list>
 #include <sstream>
 
@@ -52,6 +52,10 @@ MoveCharacter::MoveCharacter()
 	timer.start();
 }
 
+void MoveCharacter::onEnter()
+{
+}
+
 void MoveCharacter::events()
 {
 	SDL_Event event;
@@ -60,7 +64,7 @@ void MoveCharacter::events()
   {
     if( event.type == SDL_QUIT )
     {
-			game.stateMachine.setState(STATE_EXIT);
+		game.stateMachine.setState(STATE_EXIT);
     }
 
 		if(event.type == SDL_KEYDOWN && event.key.repeat == 0) 

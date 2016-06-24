@@ -37,7 +37,7 @@ float Launch::getNextSpeedX()
 float Launch::getNextSpeedY(float v_y_ant, float acc_y, float t)
 {   
 	float v_y;
-	v_y=v_y_ant+acc_y*t;
+	v_y=v_y_ant-0.05*acc_y*t;
 	return v_y;
 }
 

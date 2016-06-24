@@ -22,8 +22,13 @@ AttackState::AttackState()
 {
 }
 
+void AttackState::onEnter()
+{
+}
+
 void AttackState::events()
 {
+	
 }
 
 void AttackState::logic()
