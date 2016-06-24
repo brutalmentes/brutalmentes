@@ -26,8 +26,8 @@ MoveCharacter::MoveCharacter()
 {
     this->currentCharacter = &newton;
     this->btnAttack = new Button(BTN_ATTACK, "res/img/btn_atacar.png", 449, 250);
-    this->btnDefense = new Button(BTN_DEFENSE, "res/img/btn_defender.png", 625, 250);
-		this->healthBar_newton = new Bar(100, 20);
+    this->btnDefense = new Button(BTN_DEFENSE, "res/img/btn_defender.png", 625, 250); 
+    this->healthBar_newton = new Bar(100, 20);
     this->healthBar_arquimedes = new Bar(800, 20);
 	
     ostringstream temp;
@@ -151,17 +151,17 @@ void MoveCharacter::logic()
  
 void MoveCharacter::render()
 {   
-    game.renderer.clear();
-    game.renderer.addTexture(this->scene.getTexture());
-    game.renderer.addTexture(this->newton.getTexture());  
-    game.renderer.addTexture(this->arquimedes.getTexture());
-    game.renderer.addTexture(this->btnContinue.getTexture());
-    game.renderer.addTexture(this->btnAttack->getTexture());
-    game.renderer.addTexture(this->btnDefense->getTexture());
-    game.renderer.addText(text);
-    game.renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->newton.getLevel()),this->newton.getHealth(),30);
-    game.renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->arquimedes.getLevel()),this->arquimedes.getHealth(),30);
-    game.renderer.render();
+    game->renderer.clear();
+    game->renderer.addTexture(this->scene.getTexture());
+    game->renderer.addTexture(this->newton.getTexture());  
+    game->renderer.addTexture(this->arquimedes.getTexture());
+    game->renderer.addTexture(this->btnContinue.getTexture());
+    game->renderer.addTexture(this->btnAttack->getTexture());
+    game->renderer.addTexture(this->btnDefense->getTexture());
+    game->renderer.addText(text);
+    game->renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->newton.getLevel()),this->newton.getHealth(),30);
+    game->renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->arquimedes.getLevel()),this->arquimedes.getHealth(),30);
+    game->renderer.render();
 }
  
 States MoveCharacter::getName() {
