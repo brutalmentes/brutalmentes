@@ -1,3 +1,4 @@
+#pragma once
 #ifndef Game_hpp
 #define Game_hpp
 
@@ -25,7 +26,7 @@ public:
     Renderer renderer;
     CollisionDetector collisionDetector;
     Audio audio;
-    StateMachine stateMachine;
+    StateMachine *stateMachine;
     
     //Game(list<Character> team1,list<Character> team2); //minimo 2 jogadores
     Game();

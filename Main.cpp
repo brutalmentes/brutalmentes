@@ -2,7 +2,7 @@
 #include <string>
 #include "Game.hpp"
 
-Game game;//pegar uma lista de jogadores
+Game *game = new Game();//pegar uma lista de jogadores
 
 int main(int argc, char *argv[])
 {
@@ -16,15 +16,15 @@ int main(int argc, char *argv[])
     team2.push_front(arquimedes);
     
     // cria as equipes
-    game.createTeams(team1,team2);
-    game.audio.playSound("SG05", -1);
+    game->createTeams(team1,team2);
+    game->audio.playSound("SG05", -1);
     
-    if(!game.renderer.init())
+    if(!game->renderer.init())
     {
-        game.stateMachine.setState(STATE_EXIT);
+        game->stateMachine->setState(STATE_EXIT);
     }
     
-    State* currentState = game.stateMachine.getCurrentState();
+    State* currentState = game->stateMachine->getCurrentState();
     
     while(currentState->getName() != STATE_EXIT)
     {
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
         currentState->logic();
         currentState->render();
         
-        currentState = game.stateMachine.getCurrentState();
+        currentState = game->stateMachine->getCurrentState();
     }
     
     delete currentState;

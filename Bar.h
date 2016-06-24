@@ -1,13 +1,10 @@
+#pragma once
 #include "Texture.h"
 class Bar
 {
 private:
-	Texture *textures[4]; 
-/*	Texture *textureGreen;
-        Texture *textureYellow;
-	Texture *textureOrange;
-	Texture *textureRed;
-*/	
+	Texture *textures[5]; 
+ 
  public:
  Bar(int, int);
  ~Bar();

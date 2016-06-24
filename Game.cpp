@@ -18,6 +18,7 @@ using namespace std;
 //}
 Game::Game()
 {
+	this->stateMachine = new StateMachine();
 //    // team 1
 //    Character newton; //ver como declarar a classe certa!
 //    this->team1.push_front(newton);
