@@ -3,7 +3,7 @@
 class Bar
 {
 private:
-	Texture *textures[10]; 
+	Texture *textures[7]; 
  
  public:
  Bar(int, int);

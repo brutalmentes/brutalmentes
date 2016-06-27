@@ -21,6 +21,8 @@ private:
         Button *btnDefense;
 	Bar *forceBar;
 	Character *currentCharacter;
+	Bar *healthBar_newton;
+	Bar *healthBar_arquimedes;
 
 public:
 	AttackState();
