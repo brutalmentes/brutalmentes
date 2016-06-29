@@ -1,5 +1,6 @@
 
 #include <string>
+#include <vector>
 #include "Game.hpp"
 
 Game *game = new Game();//pegar uma lista de jogadores
@@ -10,13 +11,14 @@ int main(int argc, char *argv[])
     // seleciona os jogadores das equipes;
     Arquimedes arquimedes;
     Newton newton;
-    list<Character> team1,team2;
+    vector<Character> team1,team2;
     
-    team1.push_front(newton);
-    team2.push_front(arquimedes);
+    team1.push_back(newton);
+    team2.push_back(arquimedes);
     
     // cria as equipes
     game->createTeams(team1,team2);
+
     game->audio.playSound("SG05", -1);
     
     if(!game->renderer.init())
