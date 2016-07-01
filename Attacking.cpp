@@ -57,8 +57,8 @@ void Attacking::render()
 {	
 	game->renderer.clear();
 	game->renderer.addTexture(game->scene.getTexture());
-	game->renderer.addTexture(game->team1.at(0).getTexture());
-	game->renderer.addTexture(game->team2.at(0).getTexture());
+	game->renderer.addTexture(game->team1.at(0).getTexture(3));
+	game->renderer.addTexture(game->team2.at(0).getTexture(3));
 	if(!done) 
 	{
 		game->renderer.addTexture(object->getTexture());

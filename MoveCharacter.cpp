@@ -168,8 +168,8 @@ void MoveCharacter::render()
     }
     game->renderer.clear();
     game->renderer.addTexture(this->scene.getTexture());
-    game->renderer.addTexture(this->newton.getTexture());
-    game->renderer.addTexture(this->arquimedes.getTexture());
+    game->renderer.addTexture(this->newton.getTexture(0));
+    game->renderer.addTexture(this->arquimedes.getTexture(0));
     game->renderer.addTexture(this->btnContinue.getTexture());
     game->renderer.addTexture(this->btnAttack->getTexture());
     game->renderer.addTexture(this->btnDefense->getTexture());
