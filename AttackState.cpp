@@ -75,7 +75,7 @@ AttackState::AttackState()
     arquimedes.setOrientation(ORIENTATION_RIGHT);
 }
 
-void AttackState::onEnter() 
+void AttackState::onEnter()
 {
 }
 
@@ -184,8 +184,4 @@ void AttackState::render()
 
 States AttackState::getName() {
   return STATE_ATTACK;
-}
-
-void AttackState::onEnter()
-{
 }
