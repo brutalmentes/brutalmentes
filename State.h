@@ -6,6 +6,7 @@ enum States
 {
     STATE_MOVE_CHARACTER,
     STATE_ATTACK,
+    STATE_INIT_GAME,
     STATE_EXIT
 };
 
