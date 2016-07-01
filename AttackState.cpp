@@ -41,17 +41,31 @@ AttackState::AttackState()
   	ostringstream temp;
   	temp << "00:08";
   	text = new Text(temp.str().c_str(), textColor, 530, 20);
-     
-   	while(!game->collisionDetector.hasCollision(scene.getCollisionList(), newton.getCollisionList()))
-  	{
-   	   newton.setPosY(newton.getPosY() + 1);
-    	}
- 
+
+    if(game->posNewtonX != 0 && game->posNewtonY)
+    {
+      newton.setPosX(game->posNewtonX);
+      newton.setPosY(game->posNewtonY);
+    } 
+    else {
+      while(!game->collisionDetector.hasCollision(scene.getCollisionList(), newton.getCollisionList()))
+      {
+       newton.setPosY(newton.getPosY() + 1);
+      }
+    }
+   	
    	newton.setPosY(newton.getPosY() - 1);
  
-   	while(!game->collisionDetector.hasCollision(scene.getCollisionList(), arquimedes.getCollisionList()))
+    if(game->posArquimedesX != 0 && game->posArquimedesY)
+    {
+      arquimedes.setPosX(game->posArquimedesX);
+      arquimedes.setPosY(game->posArquimedesY);
+    } 
+    else {
+   	  while(!game->collisionDetector.hasCollision(scene.getCollisionList(), arquimedes.getCollisionList()))
         {
    	    arquimedes.setPosY(arquimedes.getPosY() + 1);
+      }
  	}
  
    	timer.start();

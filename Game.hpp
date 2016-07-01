@@ -25,7 +25,11 @@ public:
     CollisionDetector collisionDetector;
     Audio audio;
     StateMachine *stateMachine;
-    
+    int posNewtonX;
+    int posNewtonY;
+    int posArquimedesX;
+    int posArquimedesY;
+
     //Game(list<Character> team1,list<Character> team2); //minimo 2 jogadores
     Game();
     //void addPlayer(int team, Character player); // adiciona jogador a uma equipe

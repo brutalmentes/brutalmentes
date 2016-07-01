@@ -4,6 +4,10 @@ using namespace std;
 Game::Game()
 {
     this->stateMachine = new StateMachine;
+    this->posNewtonX = 0;
+    this->posNewtonY = 0;
+    this->posArquimedesX = 0;
+    this->posArquimedesY = 0;
 }
 
 void Game::createTeams(vector<Character> team1, vector<Character> team2)
