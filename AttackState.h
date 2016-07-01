@@ -23,7 +23,9 @@ private:
 	Character *currentCharacter;
 	Bar *healthBar_newton;
 	Bar *healthBar_arquimedes;
-
+	double angle;
+	Texture *arrow;
+	SDL_Point* center;
 public:
 	AttackState();
 
