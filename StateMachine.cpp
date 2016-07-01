@@ -3,6 +3,7 @@
 #include "Attacking.h"
 #include "MoveCharacter.h"
 #include "AttackState.h"
+#include "InitialState.h"
 
 State* StateMachine::getCurrentState()
 {
@@ -11,18 +12,19 @@ State* StateMachine::getCurrentState()
 
 void StateMachine::setState(States state)
 {
-	switch(state) 
+	switch(state)
 	{
 		case STATE_EXIT: this->currentState = new ExitState(); break;
 		case STATE_MOVE_CHARACTER: this->currentState = new MoveCharacter(); break;
 		case STATE_ATTACK: this->currentState = new AttackState(); break;
 		case STATE_ATTACKING: this->currentState = new Attacking(); break;
+		case STATE_INIT_GAME: this->currentState = new InitialState(); break;
 	}
 }
 
 StateMachine::StateMachine()
 {
-	this->currentState = new Attacking();
+	this->currentState = new InitialState();
 }
 
 StateMachine::~StateMachine()
