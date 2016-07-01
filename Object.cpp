@@ -7,17 +7,13 @@ Object::Object(float x, float y)
     this->mPosY = y;
 
     //Initialize the velocity
-    this->mVelX = 0;
     this->mVelY = 0;
 
     //Initialize the texture
     this->texture = new Texture("res/img/newtonmaca.png", x, y);
-}
 
-void Object::setInitialSpeed(float velx, float vely)
-{
-    this->mVelX = velx;
-    this->mVelY = vely;
+    //Set collision list
+    this->collisionList.push_back(Circle(x + 7, y + 7, 7));
 }
 
 void Object::moveAlone(float x, float y)
@@ -35,12 +31,18 @@ void Object::setPosX(float posX)
 {
     mPosX = posX;
     this->texture->setPosX(posX);
+
+    std::list<Circle>::iterator it = collisionList.begin();
+    (*it).x = posX;
 }
 
 void Object::setPosY(float posY) 
 {
     mPosY = posY;
     this->texture->setPosY(posY);
+
+    std::list<Circle>::iterator it = collisionList.begin();
+    (*it).y = posY;
 }
 
 float Object::getPosX() 
@@ -51,4 +53,9 @@ float Object::getPosX()
 float Object::getPosY()
 {
     return mPosY;
+}
+
+std::list<Circle> Object::getCollisionList()
+{
+    return this->collisionList;
 }

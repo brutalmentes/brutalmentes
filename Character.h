@@ -5,8 +5,6 @@
 #include "Circle.h"
 #include <list>
 
-const int healthChars =300;
-
 class Character{
 	public:
 		Character();
@@ -21,6 +19,14 @@ class Character{
 
 		virtual void setPosY(int posY);
 
+		int getHealth();
+
+		void setHealth(int);
+
+		void decHealth();
+
+		int getLevel();
+
 		Texture* getTexture();
 
 		void setOrientation(Orientation orientation);
@@ -29,6 +35,8 @@ class Character{
 	protected:
 		std::list<Circle> collisionList;
 		Texture* texture;
+		int health;
+		int level;
 };
 
 #endif

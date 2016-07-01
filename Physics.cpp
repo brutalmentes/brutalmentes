@@ -25,8 +25,9 @@ void Physics::start(Object* object, Launch* launch, Btimer* tempo)
     this->object = object;
 	this->stp = false;
 	this->tempo = tempo;
-	this->tempoInicial = tempo->getTime();
-    this->tempoAnt = 0;
+    this->tempoAnt = tempo->getTime();
+
+    this->object->mVelY = this->launch->initialSpeedY();
 }
 
 void Physics::stop()
@@ -36,23 +37,24 @@ void Physics::stop()
 
 void Physics::positionProcess( )
 {
-    while(1) 
+    while(true) 
 	{
-		float tmp = 0;
+		float dt;
 
         while(!stp)
         {
-            tmp = tempo->getTime() - tempoInicial;
+            dt = tempo->getTime() - tempoAnt;
 
-            if(tmp != tempoAnt)
+            if(dt != tempoAnt)
 			{
-                object->setPosX(launch->getNextPositionX(object->getPosX(),launch->getNextSpeedX(),tmp));
-                object->setPosY(launch->getNextPositionY(object->getPosY(),
-                    launch->getNextSpeedY(object->mVelY,-(launch->getForce())*0.5f,tmp),tmp));
-                std::cout << "Tempo: "<< tmp << "\n";
-                std::cout << "mPosx: "<< object->getPosX() << "\n";
-                std::cout << "mPosy: " << object->getPosY() << "\n";
-                tempoAnt = tmp;
+                object->setPosX(launch->getNextPositionX(object->getPosX(), launch->getNextSpeedX(), dt));
+                object->mVelY = launch->getNextSpeedY(object->mVelY, 2.0f, dt);
+                object->setPosY(launch->getNextPositionY(object->getPosY(), -object->mVelY, dt));
+
+                std::cout << "dt: "<< dt << "\n";
+                //std::cout << "mPosx: "<< object->getPosX() << "\n";
+                //std::cout << "mPosy: " << object->getPosY() << "\n";
+                tempoAnt += dt;
             }
         }
     }

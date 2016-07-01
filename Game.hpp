@@ -2,7 +2,6 @@
 #define Game_hpp
 
 #include <stdio.h>
-#include <list>
 #include <vector>
 #include "StateMachine.h"
 #include "Renderer.h"
@@ -13,7 +12,6 @@
 #include "Newton.h"
 #include "Arquimedes.h"
 #include "Scene.h"
-//#include "player.h"
 
 using namespace std;
 
@@ -22,24 +20,24 @@ class Game
 public:
     vector<Character> team1; //os times devem ter o mesmo numero de jogadores
     vector<Character> team2;
-    list<Character> playerSequency;
+    vector<Character> playerSequency;
     int winnerTeam;
     Renderer renderer;
     CollisionDetector collisionDetector;
     Audio audio;
-    StateMachine stateMachine;
+    StateMachine *stateMachine;
     Scene scene;
     
     //Game(list<Character> team1,list<Character> team2); //minimo 2 jogadores
     Game();
     //void addPlayer(int team, Character player); // adiciona jogador a uma equipe
-    void createTeams(list<Character> team1, list<Character> team2);// cria as equipes
+    void createTeams(vector<Character> team1, vector<Character> team2);// cria as equipes
     void killPlayer(Character p); //retira o jogador do jogo
-    bool exitGame();
+    bool exitGame(); // comando externo para sair do jogo
     void executeTurn(Character p);
-    bool VerifyDeaths(); //função que executa as mortes e retorna true caso alguém morreu
-    bool VerifyWinner(); //retorna true caso todos os jogadores de uma equipe estiverem mortos
-    int returnWinner(); //retorna a variável equipeVencedora
+    bool verifyDeaths(); //função que executa as mortes e retorna true caso alguém morreu
+    bool gameHasWinner(); //retorna true caso todos os jogadores de uma equipe estiverem mortos
+    int getWinner(); //retorna a variável equipeVencedora
     void executeWinnerMessage(int equipeVencedora); //executa animações para a equipe vencedora
     void endGame();
     

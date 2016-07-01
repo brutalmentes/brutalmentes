@@ -14,6 +14,8 @@ private:
 	Btimer *timer;
 	Launch *launch;
 
+	bool done;
+
 public:
 	Attacking();
 

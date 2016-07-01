@@ -1,3 +1,4 @@
+#pragma once
 //lista dos sons
 #include <string>
 #include <map>

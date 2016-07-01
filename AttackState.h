@@ -8,6 +8,7 @@
 #include "Character.h"
 #include "Scene.h"
 #include "Button.h"
+#include "Bar.h"
 
 class AttackState : public State
 {
@@ -16,8 +17,12 @@ private:
 	Arquimedes arquimedes;
 	Scene scene;
 	Button btnContinue;
-	
+        Button *btnAttack;
+        Button *btnDefense;
+	Bar *forceBar;
 	Character *currentCharacter;
+	Bar *healthBar_newton;
+	Bar *healthBar_arquimedes;
 
 public:
 	AttackState();

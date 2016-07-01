@@ -2,6 +2,8 @@
 
 Character::Character() 
 {
+	this->health = 300;
+	this->level=3;
 }
 
 void Character::setTexture(Texture *texture) 
@@ -27,6 +29,35 @@ void Character::setPosX(int posX)
 void Character::setPosY(int posY) 
 {
 	this->texture->setPosY(posY);
+}
+
+int Character::getHealth()
+{
+	return this->health;
+}
+
+void Character::setHealth(int health)
+{
+	this->health = health;
+}
+void Character::decHealth()
+{
+ 
+	if(health > 10)
+	{
+ 		this->health-=10;
+		if(this->level >= 1)	
+			this->level-=1;
+	}
+	else
+ 	{
+  	health=0;
+ 	}
+}
+
+int Character::getLevel()
+{
+	return this->level;
 }
 
 Texture* Character::getTexture() 

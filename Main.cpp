@@ -1,7 +1,8 @@
 #include <string>
+#include <vector>
 #include "Game.hpp"
 
-Game game;//pegar uma lista de jogadores
+Game *game = new Game();//pegar uma lista de jogadores
 
 int main(int argc, char *argv[])
 {
@@ -9,21 +10,22 @@ int main(int argc, char *argv[])
     // seleciona os jogadores das equipes;
     Arquimedes arquimedes;
     Newton newton;
-    list<Character> team1,team2;
+    vector<Character> team1,team2;
     
     team1.push_back(newton);
     team2.push_back(arquimedes);
     
     // cria as equipes
-    game.createTeams(team1,team2);
-    game.audio.playSound("SG05", -1);
+    game->createTeams(team1,team2);
+
+    game->audio.playSound("SG05", -1);
     
-    if(!game.renderer.init())
+    if(!game->renderer.init())
     {
-        game.stateMachine.setState(STATE_EXIT);
+        game->stateMachine->setState(STATE_EXIT);
     }
     
-    State* currentState = game.stateMachine.getCurrentState();
+    State* currentState = game->stateMachine->getCurrentState();
     State* newState;
 
     currentState->onEnter();
@@ -38,7 +40,7 @@ int main(int argc, char *argv[])
         currentState->logic();
         currentState->render();
         
-        newState = game.stateMachine.getCurrentState();
+        newState = game->stateMachine->getCurrentState();
 
         if(newState->getName() != currentState->getName()) 
         {

@@ -2,6 +2,8 @@
 #define OBJECT
 
 #include "Texture.h"
+#include "Circle.h"
+#include <list>
 
 class Object
 {
@@ -9,6 +11,8 @@ class Object
 		Texture *texture;
 		//The X and Y offsets of the dot
 		float mPosX, mPosY;
+
+		std::list<Circle> collisionList;
     public:
 		//The dimensions of the dot
 		static const int DOT_WIDTH = 20;
@@ -34,6 +38,8 @@ class Object
 
     	float getPosX();
     	float getPosY();
+
+    	std::list<Circle> getCollisionList();
 		
 		//The velocity of the dot
 		float mVelX, mVelY;
