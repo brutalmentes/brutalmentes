@@ -17,13 +17,15 @@ private:
 	Arquimedes arquimedes;
 	Scene scene;
 	Button btnContinue;
-        Button *btnAttack;
-        Button *btnDefense;
+    Button *btnAttack;
+    Button *btnDefense;
 	Bar *forceBar;
 	Character *currentCharacter;
 	Bar *healthBar_newton;
 	Bar *healthBar_arquimedes;
-
+	double angle;
+	Texture *arrow;
+	SDL_Point* center;
 public:
 	AttackState();
 

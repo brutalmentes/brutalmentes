@@ -19,7 +19,7 @@ class Renderer {
 		bool init();
 
 		void addTexture(Texture* newTexture);
-		
+		void addTexture(Texture* newTexture,double,SDL_Point*);	
 		void addTextureWithSize(Texture* newTexture, int width, int height);
 
 		void addText(Text* newText);
