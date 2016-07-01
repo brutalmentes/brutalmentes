@@ -155,6 +155,16 @@ void MoveCharacter::logic()
  
 void MoveCharacter::render()
 {   
+    if(this->currentCharacter == &newton)
+    {
+        game->posNewtonX = this->currentCharacter->getPosX();
+        game->posNewtonY = this->currentCharacter->getPosY();
+    }
+    else
+    {
+        game->posArquimedesX = this->currentCharacter->getPosX();
+        game->posArquimedesY = this->currentCharacter->getPosY();
+    }
     game->renderer.clear();
     game->renderer.addTexture(this->scene.getTexture());
     game->renderer.addTexture(this->newton.getTexture());  
