@@ -73,8 +73,10 @@ AttackState::AttackState()
  
     arquimedes.setPosY(arquimedes.getPosY() - 1);
     arquimedes.setOrientation(ORIENTATION_RIGHT);
+}
 
-
+void AttackState::onEnter() 
+{
 }
 
 void AttackState::events()
