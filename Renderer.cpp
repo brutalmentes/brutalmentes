@@ -60,7 +60,7 @@ bool Renderer::init() {
 		return false;
 	}
 
-	this->gFont = TTF_OpenFont( "fonts/PermanentMarker.ttf", 50);
+	this->gFont = TTF_OpenFont( " fonts/PermanentMarker.ttf", 50);
 
 	return true;	
 }

@@ -23,6 +23,7 @@ private:
     Bar *healthBar_arquimedes;
      
     Character *currentCharacter;
+    Character *otherCharacter;
  
 public:
 	MoveCharacter();

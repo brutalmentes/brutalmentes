@@ -2,7 +2,7 @@
 
 Menu::Menu()
 {
-    this->texture = new Texture("res/img/menu.png", 0, 0);
+    this->texture = new Texture(" res/img/menu.png", 0, 0);
     this->boxJogar = new SDL_Rect();
     this->boxSair = new SDL_Rect();
     setRect();

@@ -21,6 +21,7 @@ private:
     Button *btnDefense;
 	Bar *forceBar;
 	Character *currentCharacter;
+    Character *otherCharacter;
 	Bar *healthBar_newton;
 	Bar *healthBar_arquimedes;
 	double angle;

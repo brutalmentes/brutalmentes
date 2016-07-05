@@ -10,9 +10,9 @@ Attacking::Attacking()
 
 void Attacking::onEnter() 
 {
-	game->team1.at(0).setPosY(450); // TODO: REMOVER
-	game->team1.at(0).setOrientation(ORIENTATION_RIGHT);
-	object = new Object(game->team1.at(0).getPosX() + 11, game->team1.at(0).getPosY() + 50);
+	//game->getCurrentCharacter->setPosY(450); // TODO: REMOVER
+	//game->getCurrentCharacter->setOrientation(ORIENTATION_RIGHT);
+	object = new Object(game->getCurrentCharacter()->getPosX() + 11, game->getCurrentCharacter()->getPosY() + 50);
 	launch = new Launch(50.0f, 1.0472f);
 	timer = new Btimer();
 	physics = new Physics();
@@ -43,7 +43,8 @@ void Attacking::logic()
 
 	bool collidedWithEnemy = game->collisionDetector.hasCollision(
 		object->getCollisionList(), 
-		game->team2.at(0).getCollisionList()
+		game->getOtherCharacter()->getCollisionList()
+                                                                
 	);
 
 	if(!done && (collidedWithScene || collidedWithEnemy)) {
@@ -57,8 +58,8 @@ void Attacking::render()
 {	
 	game->renderer.clear();
 	game->renderer.addTexture(game->scene.getTexture());
-	game->renderer.addTexture(game->team1.at(0).getTexture(3));
-	game->renderer.addTexture(game->team2.at(0).getTexture(3));
+	game->renderer.addTexture(game->getCurrentCharacter()->getTexture(3));
+	game->renderer.addTexture(game->getOtherCharacter()->getTexture(3));
 	if(!done) 
 	{
 		game->renderer.addTexture(object->getTexture());

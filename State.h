@@ -8,7 +8,8 @@ enum States
     STATE_ATTACKING,
     STATE_ATTACK,
     STATE_INIT_GAME,
-    STATE_EXIT
+    STATE_EXIT,
+    STATE_END_TURN
 };
 
 class State

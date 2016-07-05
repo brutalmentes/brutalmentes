@@ -24,12 +24,22 @@ int Character::getPosY()
 
 void Character::setPosX(int posX) 
 {
-	this->texture[0]->setPosX(posX);
+    this->texture[0]->setPosX(posX);
+    
+    Circle c = this->collisionList.back();
+    this->collisionList.pop_back();
+    c.x = posX;
+    this->collisionList.push_back(c);
 }
 
 void Character::setPosY(int posY) 
 {
-	this->texture[0]->setPosY(posY);
+    this->texture[0]->setPosY(posY);
+    
+    Circle c = this->collisionList.back();
+    this->collisionList.pop_back();
+    c.y = posY;
+    this->collisionList.push_back(c);
 }
 
 int Character::getHealth()

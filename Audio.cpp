@@ -6,19 +6,19 @@
 
 Audio::Audio()
 {
-	this->track1="audio/AC01.wav";
-	this->track2="audio/AC02-1.wav";
-	this->track3="audio/AC02-2.wav";
-	this->track4="audio/EJ02.wav";  
-	this->track5="audio/M01.wav";
-	this->track6="audio/M03.wav"; 
-	this->track7="audio/M04.wav";
-	this->track8="audio/RA04.wav";
-	this->track9="audio/RA05.wav"; 
-	this->track10="audio/RA06.wav";
-	this->track11="audio/SG01.wav";
-	this->track12="audio/SG03.wav";
-	this->track13="audio/SG05.wav";
+	this->track1=" audio/AC01.wav";
+	this->track2=" audio/AC02-1.wav";
+	this->track3=" audio/AC02-2.wav";
+	this->track4=" audio/EJ02.wav";  
+	this->track5=" audio/M01.wav";
+	this->track6=" audio/M03.wav"; 
+	this->track7=" audio/M04.wav";
+	this->track8=" audio/RA04.wav";
+	this->track9=" audio/RA05.wav"; 
+	this->track10=" audio/RA06.wav";
+	this->track11=" audio/SG01.wav";
+	this->track12=" audio/SG03.wav";
+	this->track13=" audio/SG05.wav";
 
 	Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 );
 	if(!loadAudio())	
@@ -29,7 +29,7 @@ Audio::Audio()
 
 void Audio::playSound(std::string id, int loop)
 {	
-	std::string dir ("audio/");
+	std::string dir (" audio/");
 	std::string extension (".wav");
 	Mix_PlayChannel(-1,tracks[dir+id+extension], loop);
 }

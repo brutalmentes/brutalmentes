@@ -33,46 +33,18 @@ int force;
 SDL_Point window_size = {12,45};
 AttackState::AttackState()
 {
-  this->currentCharacter = &newton;
+  this->currentCharacter = game->getCurrentCharacter();
+  this->otherCharacter = game->getOtherCharacter();
   this->forceBar = new Bar(100,100);
   this->healthBar_newton = new Bar(100, 20);
   this->healthBar_arquimedes = new Bar(800, 20);
-  // this->arrow = new Texture("res/img/arrow_force.png",300,300);
+  // this->arrow = new Texture(" res/img/arrow_force.png",300,300);
   this->angle=45;
   ostringstream temp;
     temp << "00:08";
     text = new Text(temp.str().c_str(), textColor, 530, 20);
-
-    if(game->posNewtonX != 0 && game->posNewtonY)
-    {
-      newton.setPosX(game->posNewtonX);
-      newton.setPosY(game->posNewtonY);
-    }
-    else {
-      while(!game->collisionDetector.hasCollision(scene.getCollisionList(), newton.getCollisionList()))
-      {
-       newton.setPosY(newton.getPosY() + 1);
-      }
-    }
-
-    newton.setPosY(newton.getPosY() - 1);
-
-    if(game->posArquimedesX != 0 && game->posArquimedesY)
-    {
-      arquimedes.setPosX(game->posArquimedesX);
-      arquimedes.setPosY(game->posArquimedesY);
-    }
-    else {
-      while(!game->collisionDetector.hasCollision(scene.getCollisionList(), arquimedes.getCollisionList()))
-        {
-        arquimedes.setPosY(arquimedes.getPosY() + 1);
-      }
-  }
-
     timer.start();
 
-    arquimedes.setPosY(arquimedes.getPosY() - 1);
-    arquimedes.setOrientation(ORIENTATION_RIGHT);
 }
 
 void AttackState::onEnter()
@@ -103,6 +75,7 @@ void AttackState::events()
   {
   //TODO adicionar lançamento do objeto
      barTimer.stop();
+    //game->stateMachine->setState(STATE_END_TURN); //adicionado apenas para pular de estado: REMOVER
   }
   if(event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT)
   {
@@ -160,25 +133,14 @@ void AttackState::logic()
 
 void AttackState::render()
 {
-  game->renderer.clear();
-      game->renderer.addTexture(this->scene.getTexture());
-    game->renderer.addTexture(this->newton.getTexture(0));
-    game->renderer.addTexture(this->arquimedes.getTexture(0));
-  // if(orientation == ORIENTATION_RIGHT)
-  // {
-  //   this->arrow->setPosX(currentCharacter->getPosX()+50);
-  //   this->arrow->setPosY(currentCharacter->getPosY()+50);
-  // }
-  // else
-  // {
-  //   this->arrow->setPosX(currentCharacter->getPosX()+30);
-  //   this->arrow->setPosY(currentCharacter->getPosY()+50);
-  // }
-  // game->renderer.addTexture(this->arrow,angle,&window_size);
-    game->renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->newton.getLevel()),this->newton.getHealth(),30);
-    game->renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->arquimedes.getLevel()),this->arquimedes.getHealth(),30);
-  game->renderer.addTextureWithSize(this->forceBar->getTexture(5),100,30);
-  game->renderer.addTextureWithSize(this->forceBar->getTexture(6),force,30);
+    game->renderer.clear();
+    game->renderer.addTexture(this->scene.getTexture());
+    game->renderer.addTexture(this->currentCharacter->getTexture(0));
+    game->renderer.addTexture(this->otherCharacter->getTexture(0));
+    game->renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->currentCharacter->getLevel()),this->currentCharacter->getHealth(),30);
+    game->renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->otherCharacter->getLevel()),this->otherCharacter->getHealth(),30);
+    game->renderer.addTextureWithSize(this->forceBar->getTexture(5),100,30);
+    game->renderer.addTextureWithSize(this->forceBar->getTexture(6),force,30);
     game->renderer.render();
 }
 

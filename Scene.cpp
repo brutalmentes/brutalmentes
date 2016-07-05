@@ -5,8 +5,8 @@ Scene::Scene(void)
 {
 	LoadCollisionMap lcm;
 
-	this->texture = new Texture("res/img/waterlevel2.png", 0, 0);
-	this->collisionList = lcm.load("res/scene.csv");
+	this->texture = new Texture(" res/img/waterlevel2.png", 0, 0);
+	this->collisionList = lcm.load(" res/scene.csv");
 }
 
 Texture* Scene::getTexture()

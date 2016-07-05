@@ -4,10 +4,6 @@ using namespace std;
 Game::Game()
 {
     this->stateMachine = new StateMachine;
-    this->posNewtonX = 0;
-    this->posNewtonY = 0;
-    this->posArquimedesX = 0;
-    this->posArquimedesY = 0;
 }
 
 void Game::createTeams(vector<Character> team1, vector<Character> team2)
@@ -28,84 +24,26 @@ void Game::createTeams(vector<Character> team1, vector<Character> team2)
     int j=0;//inicia indice do time 2
     for (int i=0; i<team1.size(); i++)
     {
-        this->playerSequency.push_back(team1[i]);
-        this->playerSequency.push_back(team2[j]);
+        this->playerSequence.push_back(team1[i]);
+        this->playerSequence.push_back(team2[j]);
         j++;
     }
 }
 
-bool Game::exitGame()
+
+Character* Game::getCurrentCharacter()
 {
-    return false;
+    return &this->playerSequence[0];
 }
 
-void Game::executeTurn(Character p)
+Character* Game::getOtherCharacter()
 {
-    //joga o turno com o jogador
+    return &this->playerSequence[1];
 }
 
-bool Game::verifyDeaths()
+void Game::nextCharacter()
 {
-    //loop com todos os jogadores pra ver se algum está com a vida = 0
-    for (int i=0; i<this->playerSequency.size(); i++)
-    {
-        //verifica se algum character da lista está morto
-        if (this->playerSequency[i].getHealth()==0)
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-void Game::killPlayer(Character p)
-{
-    //mata o jogador
-    // remove jogador das listas
-}
-
-bool Game::gameHasWinner()
-{
-    int livingPlayers = 0;
-    
-    // verifica se todos os jogadores da equipe 1 estão mortos
-    for (int i=0; i< this->team1.size(); i++)
-    {   //verifica se algum character da lista está vivo
-        if (this->team1[i].getHealth()) livingPlayers++;
-        
-    }
-    if (livingPlayers==0)
-    {   //todos os jogadores da equipe 1 estão mortos
-        this->winnerTeam = 2; // equipe 2 venceu
-        return true;
-    }
-    livingPlayers = 0;
-    
-    // verifica se todos os jogadores da equipe 1 estão mortos
-    for (int i=0; i<this->team2.size(); i++)
-    {   //verifica se algum character da lista está vivo
-        if (this->team2[i].getHealth()) livingPlayers++;
-        
-    }
-    if (livingPlayers==0)
-    {   //todos os jogadores da equipe 2 estão mortos
-        this->winnerTeam = 1; // equipe 1 venceu
-        return true;
-    }
-    return false;
-}
-
-int Game::getWinner()
-{
-    //retorna a equipe vencedora
-    return winnerTeam;
-}
-
-void Game::executeWinnerMessage(int equipeVencedora)
-{
-    
-}
-void Game::endGame()
-{
-    // apaga as variaveis e termina com o jogo
+    Character aux = playerSequence[0];
+    this->playerSequence[0] = this->playerSequence[1];
+    this->playerSequence[1] = aux;
 }

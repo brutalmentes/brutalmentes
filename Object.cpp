@@ -10,7 +10,7 @@ Object::Object(float x, float y)
     this->mVelY = 0;
 
     //Initialize the texture
-    this->texture = new Texture("res/img/newtonmaca.png", x, y);
+    this->texture = new Texture(" res/img/newtonmaca.png", x, y);
 
     //Set collision list
     this->collisionList.push_back(Circle(x + 7, y + 7, 7));
