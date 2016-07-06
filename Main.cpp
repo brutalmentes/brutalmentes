@@ -6,10 +6,10 @@ Game *game = new Game();//pegar uma lista de jogadores
 
 int main(int argc, char *argv[])
 {
-
     // seleciona os jogadores das equipes;
     Arquimedes arquimedes;
     Newton newton;
+
     vector<Character> team1,team2;
 
     team1.push_back(newton);
@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
 
     // cria as equipes
     game->createTeams(team1,team2);
-
 
     if(!game->renderer.init())
     {
@@ -28,9 +27,9 @@ int main(int argc, char *argv[])
     State* newState;
 
     currentState->onEnter();
+
     while(currentState->getName() != STATE_EXIT)
     {
-
         // pega o primeiro jogador da lista de jogadores
         // realiza o turno com o jogador
         // verifica se alguem morreu

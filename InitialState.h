@@ -18,8 +18,6 @@ class InitialState : public State
 
     private:
         Menu* menu;
-
-
 };
 
 #endif // INITIALSTATE_H

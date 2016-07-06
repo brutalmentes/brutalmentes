@@ -20,8 +20,7 @@ void StateMachine::setState(States state)
         case STATE_ATTACK: this->currentState = new AttackState(); break;
         case STATE_ATTACKING: this->currentState = new Attacking(); break;
         case STATE_INIT_GAME: this->currentState = new InitialState(); break;
-        case STATE_END_TURN: this->currentState = new EndTurn(); break;
-            
+        case STATE_END_TURN: this->currentState = new EndTurn(); break;      
     }
 }
 

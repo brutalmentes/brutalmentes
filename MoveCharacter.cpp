@@ -50,6 +50,7 @@ MoveCharacter::MoveCharacter()
 
     timer.start();
 
+
     this->otherCharacter->setPosY(this->otherCharacter->getPosY() - 1);
     
     this->otherCharacter->setOrientation(ORIENTATION_LEFT);
