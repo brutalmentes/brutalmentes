@@ -60,7 +60,7 @@ bool Renderer::init() {
 		return false;
 	}
 
-	this->gFont = TTF_OpenFont( "fonts/PermanentMarker.ttf", 50);
+	this->gFont = TTF_OpenFont( " fonts/PermanentMarker.ttf", 50);
 
 	return true;	
 }
@@ -75,6 +75,10 @@ void Renderer::addTexture(Texture* newTexture) {
 	newTexture->render(this->gRenderer);
 }
 
+void Renderer::addTexture(Texture* newTexture, double angle,SDL_Point* center) {
+	newTexture->loadFromFile(this->gRenderer);
+	newTexture->render(this->gRenderer,NULL,angle,center);
+}
 void Renderer::addTextureWithSize(Texture* newTexture, int width, int height) {
 	newTexture->loadFromFile(this->gRenderer);
 	newTexture->setWidth(width);

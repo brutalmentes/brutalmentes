@@ -9,7 +9,7 @@ class Character{
 	public:
 		Character();
 
-		void setTexture(Texture *texture);
+		// void setTexture(Texture *texture);
 
 		int getPosX();
 
@@ -27,14 +27,14 @@ class Character{
 
 		int getLevel();
 
-		Texture* getTexture();
+		Texture* getTexture(int);
 
 		void setOrientation(Orientation orientation);
 
 		std::list<Circle> getCollisionList();	
 	protected:
 		std::list<Circle> collisionList;
-		Texture* texture;
+		Texture *texture[6];
 		int health;
 		int level;
 };

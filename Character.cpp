@@ -6,29 +6,40 @@ Character::Character()
 	this->level=3;
 }
 
-void Character::setTexture(Texture *texture) 
-{
-	this->texture = texture;
-}
+// void Character::setTexture(Texture *texture) 
+// {
+// 	this->texture = texture;
+// }
 
+// TODO: get texture_id
 int Character::getPosX() 
 {
-	return this->texture->getPosX();
+	return this->texture[0]->getPosX();
 }
 
 int Character::getPosY() 
 {
-	return this->texture->getPosY();
+	return this->texture[0]->getPosY();
 }
 
 void Character::setPosX(int posX) 
 {
-	this->texture->setPosX(posX);
+    this->texture[0]->setPosX(posX);
+    
+    Circle c = this->collisionList.back();
+    this->collisionList.pop_back();
+    c.x = posX;
+    this->collisionList.push_back(c);
 }
 
 void Character::setPosY(int posY) 
 {
-	this->texture->setPosY(posY);
+    this->texture[0]->setPosY(posY);
+    
+    Circle c = this->collisionList.back();
+    this->collisionList.pop_back();
+    c.y = posY;
+    this->collisionList.push_back(c);
 }
 
 int Character::getHealth()
@@ -60,20 +71,20 @@ int Character::getLevel()
 	return this->level;
 }
 
-Texture* Character::getTexture() 
+Texture* Character::getTexture(int id) 
 {
-	return this->texture;
+	return this->texture[id];
 }
 
 void Character::setOrientation(Orientation orientation)
 {
 	if(orientation == ORIENTATION_LEFT)
 	{
-		this->texture->setFlip(SDL_FLIP_HORIZONTAL);
+		this->texture[0]->setFlip(SDL_FLIP_NONE);		
 	}
 	else
 	{
-		this->texture->setFlip(SDL_FLIP_NONE);
+		this->texture[0]->setFlip(SDL_FLIP_HORIZONTAL);
 	}
 }
 

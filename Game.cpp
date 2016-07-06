@@ -1,128 +1,49 @@
 #include "Game.hpp"
 using namespace std;
 
-//Game::Game(list<Character> team1, list<Character> team2)
-//{
-//    this->team1 = team1;
-//    this->team2 = team2;
-//    
-//    // intercala os jogadores em uma lista
-//    list<Character>::iterator it2 = team2.begin();
-//    for (list<Character>::iterator it1 = team1.begin(); it1 != team1.end(); it1++)
-//    {
-//        this->playerSequency.push_front(*it1);
-//        this->playerSequency.push_front(*it2);
-//        it2++;
-//    }
-//    
-//}
 Game::Game()
 {
-	this->stateMachine = new StateMachine();
-//    // team 1
-//    Character newton; //ver como declarar a classe certa!
-//    this->team1.push_front(newton);
-//    
-//    // team 2
-//    Character arquimedes; //ver como declarar a classe certa!
-//    this->team2.push_front(arquimedes);
-//    
-//    // intercala os jogadores em uma lista
-//    list<Character>::iterator it2 = team2.begin();
-//    for (list<Character>::iterator it1 = team1.begin(); it1 != team1.end(); it1++)
-//    {
-//        this->playerSequency.push_front(*it1);
-//        this->playerSequency.push_front(*it2);
-//        it2++;
-//    }
-    
+    this->stateMachine = new StateMachine;
 }
-//
-//void Game::addPlayer(int team, Character player)
-//{
-//    if (team == 1)
-//    {
-//        this->team1.push_front(player);
-//    }
-//    else
-//    {
-//        this->team2.push_front(player);
-//    }
-//}
 
-void Game::createTeams(list<Character> team1, list<Character> team2)
+void Game::createTeams(vector<Character> team1, vector<Character> team2)
 {
     // adiciona jogadores ao time 1
-    for (list<Character>::iterator it = team1.begin(); it != team1.end(); it++)
+    for (int i=0; i<team1.size(); i++)
     {
-        this->team1.push_front(*it);
+        this->team1.push_back(team1[i]);
     }
     
     // adiciona jogadores ao time 2
-    for (list<Character>::iterator it = team2.begin(); it != team2.end(); it++)
+    for (int i=0; i<team2.size(); i++)
     {
-        this->team2.push_front(*it);
+        this->team2.push_back(team2[i]);
     }
     
     // intercala os jogadores em uma lista
-    list<Character>::iterator it2 = team2.begin();
-    for (list<Character>::iterator it1 = team1.begin(); it1 != team1.end(); it1++)
+    int j=0;//inicia indice do time 2
+    for (int i=0; i<team1.size(); i++)
     {
-        this->playerSequency.push_front(*it1);
-        this->playerSequency.push_front(*it2);
-        it2++;
+        this->playerSequence.push_back(team1[i]);
+        this->playerSequence.push_back(team2[j]);
+        j++;
     }
 }
 
-bool Game::exitGame()
+
+Character* Game::getCurrentCharacter()
 {
-    return false;
+    return &this->playerSequence[0];
 }
 
-void Game::executeTurn(Character p)
+Character* Game::getOtherCharacter()
 {
-    //joga o turno com o jogador
+    return &this->playerSequence[1];
 }
 
-bool Game::VerifyDeaths()
+void Game::nextCharacter()
 {
-    //loop com todos os jogadores pra ver se algum está com a vida = 0
-    for (list<Character>::iterator it = playerSequency.begin(); it != playerSequency.end(); it++)
-    {
-        //verifica se algum character da lista está morto
-        if (false)
-        {
-            return true;
-        }
-    
-    }
-    return false;
-}
-
-void Game::killPlayer(Character p)
-{
-    //mata o jogador
-    // remove jogador das listas
-}
-
-bool Game::VerifyWinner()
-{
-    // verifica se todos os jogadores da equipe 1 estão mortos
-    // verifica se todos os jogadores da equipe 2 estão mortos
-    return false;
-}
-
-int Game::returnWinner()
-{
-    //retorna a equipe vencedora
-    return winnerTeam;
-}
-
-void Game::executeWinnerMessage(int equipeVencedora)
-{
-    
-}
-void Game::endGame()
-{
-    // apaga as variaveis e termina com o jogo
+    Character aux = playerSequence[0];
+    this->playerSequence[0] = this->playerSequence[1];
+    this->playerSequence[1] = aux;
 }

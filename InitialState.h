@@ -14,10 +14,10 @@ class InitialState : public State
         void events();
         void logic();
         void render();
+        void onEnter();
 
     private:
         Menu* menu;
-
 };
 
 #endif // INITIALSTATE_H

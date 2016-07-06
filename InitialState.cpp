@@ -45,3 +45,8 @@ States InitialState::getName() {
 
 void InitialState::logic()
 {}
+
+void InitialState::onEnter()
+{
+
+}

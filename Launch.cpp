@@ -21,38 +21,28 @@ float  Launch::getAng(void)
 
  float Launch::initialSpeedY()
  {
-   float v_y;
-   v_y=this->force*sin(this->ang);
-   return v_y;
+   return this->force*sin(this->ang);
  }
 
 
 float Launch::getNextSpeedX()
 {   
-	float v_x=0;
-	v_x=this->force*cos(this->ang);
-	return v_x;
+	return this->force*cos(this->ang);
 }
 
-float Launch::getNextSpeedY(float v_y_ant, float acc_y, float t)
+float Launch::getNextSpeedY(float v_y_ant, float acc_y, float dt)
 {   
-	float v_y;
-	v_y=v_y_ant+acc_y*t;
-	return v_y;
+	return v_y_ant - acc_y*dt;
 }
 
-float Launch::getNextPositionX(float s_ant_x, float v_x, float t)
+float Launch::getNextPositionX(float s_ant_x, float v_x, float dt)
 {
-    float s_x;
-    s_x=s_ant_x+v_x*t;
-	return s_x;
+	return s_ant_x + v_x*dt;
 }
 
-float Launch::getNextPositionY(float s_ant_y, float v_y, float t)
+float Launch::getNextPositionY(float s_ant_y, float v_y, float dt)
 {
-    float s_y;
-    s_y=s_ant_y+v_y*t;
-	return s_y;
+	return s_ant_y + v_y*dt;
 }
 
 float Launch::getForce()

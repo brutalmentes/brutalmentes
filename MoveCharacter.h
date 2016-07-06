@@ -23,12 +23,14 @@ private:
     Bar *healthBar_arquimedes;
      
     Character *currentCharacter;
+    Character *otherCharacter;
  
 public:
-    MoveCharacter();
- 
-    States getName();
-    void events();
-    void logic();
-    void render();
+	MoveCharacter();
+
+	States getName();
+	void onEnter();
+	void events();
+	void logic();
+	void render();
 };
