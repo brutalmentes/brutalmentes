@@ -78,7 +78,12 @@ void AttackState::events()
   {
   //TODO adicionar lançamento do objeto
      barTimer.stop();
+	if(this->angle < 0) {
+           force *= -1;
+        }
      game->setForceAng(force, this->angle);
+     force = 0;
+     angle = 45;
      game->stateMachine->setState(STATE_ATTACKING); //adicionado apenas para pular de estado: REMOVER
   }
   if(event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT)
