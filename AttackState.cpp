@@ -38,8 +38,11 @@ AttackState::AttackState()
   this->forceBar = new Bar(100,100);
   this->healthBar_newton = new Bar(100, 20);
   this->healthBar_arquimedes = new Bar(800, 20);
-  // this->arrow = new Texture(" res/img/arrow_force.png",300,300);
+  this->arrow = new Texture("res/img/arrow_force.png",300,300);
   this->angle=45;
+     this->arrow->setPosX(this->currentCharacter->getPosX());
+   this->arrow->setPosY(this->currentCharacter->getPosY());
+
   ostringstream temp;
     temp << "00:08";
     text = new Text(temp.str().c_str(), textColor, 530, 20);
@@ -80,11 +83,15 @@ void AttackState::events()
   if(event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT)
   {
    angle+=2;
+   this->arrow->setPosX(this->currentCharacter->getPosX());
+   this->arrow->setPosY(this->currentCharacter->getPosY());
   }
 
   if(event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LEFT)
   {
    angle-=2;
+   this->arrow->setPosX(this->currentCharacter->getPosX());
+   this->arrow->setPosY(this->currentCharacter->getPosY());
   }
 
     }
@@ -137,6 +144,7 @@ void AttackState::render()
     game->renderer.addTexture(this->scene.getTexture());
     game->renderer.addTexture(this->currentCharacter->getTexture(0));
     game->renderer.addTexture(this->otherCharacter->getTexture(0));
+    game->renderer.addTexture(this->arrow, this->angle , &window_size);
     game->renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->currentCharacter->getLevel()),this->currentCharacter->getHealth(),30);
     game->renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->otherCharacter->getLevel()),this->otherCharacter->getHealth(),30);
     game->renderer.addTextureWithSize(this->forceBar->getTexture(5),100,30);
