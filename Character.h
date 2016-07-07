@@ -31,12 +31,15 @@ class Character{
 
 		void setOrientation(Orientation orientation);
 
-		std::list<Circle> getCollisionList();	
+		void setNumTexture(int numTexture);
+
+		std::list<Circle> getCollisionList();
 	protected:
 		std::list<Circle> collisionList;
 		Texture *texture[6];
 		int health;
 		int level;
+		int numTexture;
 };
 
 #endif

@@ -4,6 +4,7 @@ Character::Character()
 {
 	this->health = 300;
 	this->level=3;
+	this->numTexture = 0;
 }
 
 // void Character::setTexture(Texture *texture) 
@@ -14,17 +15,22 @@ Character::Character()
 // TODO: get texture_id
 int Character::getPosX() 
 {
-	return this->texture[0]->getPosX();
+	return this->texture[this->numTexture]->getPosX();
 }
 
 int Character::getPosY() 
 {
-	return this->texture[0]->getPosY();
+	return this->texture[this->numTexture]->getPosY();
 }
 
 void Character::setPosX(int posX) 
 {
     this->texture[0]->setPosX(posX);
+    this->texture[1]->setPosX(posX);
+    this->texture[2]->setPosX(posX);
+    this->texture[3]->setPosX(posX);
+    this->texture[4]->setPosX(posX);
+    this->texture[5]->setPosX(posX);
     
     Circle c = this->collisionList.back();
     this->collisionList.pop_back();
@@ -35,6 +41,11 @@ void Character::setPosX(int posX)
 void Character::setPosY(int posY) 
 {
     this->texture[0]->setPosY(posY);
+    this->texture[1]->setPosY(posY);
+    this->texture[2]->setPosY(posY);
+    this->texture[3]->setPosY(posY);
+    this->texture[4]->setPosY(posY);
+    this->texture[5]->setPosY(posY);
     
     Circle c = this->collisionList.back();
     this->collisionList.pop_back();
@@ -71,9 +82,14 @@ int Character::getLevel()
 	return this->level;
 }
 
+void Character::setNumTexture(int numTexture)
+{
+	this->numTexture = numTexture;
+}
+
 Texture* Character::getTexture(int id) 
 {
-	return this->texture[id];
+	return this->texture[this->numTexture];
 }
 
 void Character::setOrientation(Orientation orientation)

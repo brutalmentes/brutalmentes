@@ -66,6 +66,7 @@ void Attacking::logic()
 
 void Attacking::render()
 {
+	game->getCurrentCharacter()->setNumTexture(3);
 	game->renderer.clear();
 	game->renderer.addTexture(game->scene.getTexture());
 	game->renderer.addTexture(game->getCurrentCharacter()->getTexture(0));
