@@ -26,8 +26,8 @@ MoveCharacter::MoveCharacter()
 {
     this->currentCharacter = game->getCurrentCharacter();
     this->otherCharacter = game->getOtherCharacter();
-    this->btnAttack = new Button(BTN_ATTACK, " res/img/btn_atacar.png", 449, 250);
-    this->btnDefense = new Button(BTN_DEFENSE, " res/img/btn_defender.png", 625, 250);
+    this->btnAttack = new Button(BTN_ATTACK, "res/img/btn_atacar.png", 449, 250);
+    this->btnDefense = new Button(BTN_DEFENSE, "res/img/btn_defender.png", 625, 250);
     this->healthBar_newton = new Bar(100, 20);
     this->healthBar_arquimedes = new Bar(800, 20);
     game->audio.playSound("SG05", -1);
@@ -167,7 +167,7 @@ void MoveCharacter::render()
     game->renderer.addTexture(this->btnContinue.getTexture());
     game->renderer.addTexture(this->btnAttack->getTexture());
     game->renderer.addTexture(this->btnDefense->getTexture());
-    game->renderer.addText(text);
+    //game->renderer.addText(text);
     game->renderer.addTextureWithSize(this->healthBar_newton->getTexture(this->currentCharacter->getLevel()),this->currentCharacter->getHealth(),30);
     game->renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(this->otherCharacter->getLevel()),this->otherCharacter->getHealth(),30);
     game->renderer.render();

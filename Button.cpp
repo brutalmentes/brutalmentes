@@ -12,7 +12,7 @@ Button::Button(int id, string path, int posX, int posY)
 Button::Button()
 {
     this->id = 3;
-    this->texture = new Texture(" res/img/btn_continuar.png", 1064, 620);
+    this->texture = new Texture("res/img/btn_continuar.png", 1064, 620);
 }
  
 Button::~Button(void)
