@@ -10,7 +10,7 @@ Object::Object(float x, float y)
     this->mVelY = 0;
 
     //Initialize the texture
-    this->texture = new Texture(" res/img/newtonmaca.png", x, y);
+    this->texture = new Texture("res/img/newtonmaca.png", x, y);
 
     //Set collision list
     this->collisionList.push_back(Circle(x + 7, y + 7, 7));
@@ -27,7 +27,7 @@ Texture* Object::getTexture()
     return texture;
 }
 
-void Object::setPosX(float posX) 
+void Object::setPosX(float posX)
 {
     mPosX = posX;
     this->texture->setPosX(posX);
@@ -36,7 +36,7 @@ void Object::setPosX(float posX)
     (*it).x = posX;
 }
 
-void Object::setPosY(float posY) 
+void Object::setPosY(float posY)
 {
     mPosY = posY;
     this->texture->setPosY(posY);
@@ -45,7 +45,7 @@ void Object::setPosY(float posY)
     (*it).y = posY;
 }
 
-float Object::getPosX() 
+float Object::getPosX()
 {
     return mPosX;
 }

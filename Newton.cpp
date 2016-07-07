@@ -2,7 +2,7 @@
 
 Newton::Newton() : Character()
 {
-	this->texture[0] = new Texture("res/img/newtonParado.png", 100, 800, true, 52, 22);
+	this->texture[0] = new Texture("res/img/newtonParado.png", 250, 800, true, 52, 22);
 	// transição entre parado e movendo
 	this->texture[1] = new Texture("res/img/newtonMovendoLoop.png", 100,800, true, (624/12), 12);
 	// movendo
@@ -24,7 +24,7 @@ Newton::~Newton()
     delete this->texture[5];
 }
 
-void Newton::setPosX(int posX) 
+void Newton::setPosX(int posX)
 {
 	Character::setPosX(posX);
 
@@ -34,7 +34,7 @@ void Newton::setPosX(int posX)
 	this->collisionList.push_back(c);
 }
 
-void Newton::setPosY(int posY) 
+void Newton::setPosY(int posY)
 {
 	Character::setPosY(posY);
 

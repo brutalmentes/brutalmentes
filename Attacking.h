@@ -5,6 +5,7 @@
 #include "Physics.h"
 #include "Launch.h"
 #include "Btimer.h"
+#include "Bar.h"
 
 class Attacking : public State
 {
@@ -13,7 +14,8 @@ private:
 	Physics *physics;
 	Btimer *timer;
 	Launch *launch;
-    
+    Bar *healthBar_newton;
+	Bar *healthBar_arquimedes;
 
 	bool done;
 
