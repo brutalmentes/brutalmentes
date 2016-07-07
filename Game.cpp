@@ -30,6 +30,22 @@ void Game::createTeams(vector<Character> team1, vector<Character> team2)
     }
 }
 
+void Game::setForceAng(float force, float angle)
+{
+    this->force = force;
+    this->angle = angle;
+}
+
+float Game::getForce()
+{
+    return this->force;
+}
+
+float Game::getAngle()
+{
+    return this->angle;
+}
+
 
 Character* Game::getCurrentCharacter()
 {

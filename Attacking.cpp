@@ -15,7 +15,7 @@ void Attacking::onEnter()
 	//game->getCurrentCharacter->setPosY(450); // TODO: REMOVER
 	//game->getCurrentCharacter->setOrientation(ORIENTATION_RIGHT);
 	object = new Object(game->getCurrentCharacter()->getPosX() + 11, game->getCurrentCharacter()->getPosY() + 50);
-	launch = new Launch(50.0f, 1.0472f);
+	launch = new Launch(game->getForce(), game->getAngle()*3.1415/180);
 	timer = new Btimer();
 	physics = new Physics();
 	physics->start(object, launch, timer);
@@ -56,9 +56,12 @@ void Attacking::logic()
 		game->audio.playSound("AC02-1", 0);
 		done = true;
 
-		if(collidedWithEnemy)
-            game->getOtherCharacter()->setHealth(game->getCurrentCharacter()->getHealth()-30);
-        game->stateMachine->setState(STATE_END_TURN);
+	    if(collidedWithEnemy)
+            {
+               game->getOtherCharacter()->setHealth(game->getCurrentCharacter()->getHealth()-30);
+            }
+            
+            game->stateMachine->setState(STATE_END_TURN);
 	}
 }
 

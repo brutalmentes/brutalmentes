@@ -17,6 +17,10 @@ using namespace std;
 
 class Game
 {
+private:
+    float force;
+    float angle;
+
 public:
     vector<Character> team1; //os times devem ter o mesmo numero de jogadores
     vector<Character> team2;
@@ -35,6 +39,8 @@ public:
     Character* getCurrentCharacter();
     Character* getOtherCharacter();
     void nextCharacter();
-    
+    void setForceAng(float force, float angle);
+    float getForce();
+    float getAngle();    
 };
 #endif /* Game_hpp */
