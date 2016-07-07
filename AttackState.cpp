@@ -78,6 +78,9 @@ void AttackState::events()
   {
   //TODO adicionar lançamento do objeto
      barTimer.stop();
+	if(this->angle < 0) {
+           force *= -1;
+        }
      game->setForceAng(force, this->angle);
      force = 0;
      angle = 45;
