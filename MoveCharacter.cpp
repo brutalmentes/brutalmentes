@@ -81,6 +81,7 @@ void MoveCharacter::events()
                 case SDLK_RIGHT: mVelX += DOT_VEL; orientation = ORIENTATION_RIGHT; break;
 
             }
+            game->getCurrentCharacter()->setNumTexture(1);
         }
 
         if(event.type == SDL_KEYUP && event.key.repeat == 0)
@@ -90,6 +91,7 @@ void MoveCharacter::events()
                 case SDLK_LEFT: mVelX += DOT_VEL; break;
                 case SDLK_RIGHT: mVelX -= DOT_VEL; break;
             }
+            game->getCurrentCharacter()->setNumTexture(1);
         }
 
         this->btnContinue.handleEvent(&event);
@@ -102,7 +104,6 @@ void MoveCharacter::events()
 
             switch(event.user.code) {
                 case BTN_ATTACK:
-			printf("TESTE");
                     game->stateMachine->setState(STATE_ATTACK);
                     break;
                 case BTN_DEFENSE:
