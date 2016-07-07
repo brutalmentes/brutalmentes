@@ -15,6 +15,7 @@ void Attacking::onEnter()
 	//game->getCurrentCharacter->setPosY(450); // TODO: REMOVER
 	//game->getCurrentCharacter->setOrientation(ORIENTATION_RIGHT);
 	object = new Object(game->getCurrentCharacter()->getPosX() + 11, game->getCurrentCharacter()->getPosY() + 50);
+
 	launch = new Launch(game->getForce(), game->getAngle()*3.1415/180);
 	timer = new Btimer();
 	physics = new Physics();
@@ -43,8 +44,6 @@ void Attacking::logic()
 		game->scene.getCollisionList()
 	);
 
-    collidedWithScene=false;
-
 	bool collidedWithEnemy = game->collisionDetector.hasCollision(
 		object->getCollisionList(),
 		game->getOtherCharacter()->getCollisionList()
@@ -70,7 +69,7 @@ void Attacking::render()
 	game->renderer.clear();
 	game->renderer.addTexture(game->scene.getTexture());
 	game->renderer.addTexture(game->getCurrentCharacter()->getTexture(0));
-	game->renderer.addTexture(game->getOtherCharacter()->getTexture(3));
+	game->renderer.addTexture(game->getOtherCharacter()->getTexture(0));
     game->renderer.addTextureWithSize(this->healthBar_newton->getTexture(game->getCurrentCharacter()->getLevel()),game->getCurrentCharacter()->getHealth(),30);
     game->renderer.addTextureWithSize(this->healthBar_arquimedes->getTexture(game->getOtherCharacter()->getLevel()),game->getOtherCharacter()->getHealth(),30);
 	if(!done)
