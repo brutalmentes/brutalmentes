@@ -11,7 +11,7 @@ Arquimedes::Arquimedes()
 	this->texture[3] = new Texture("res/img/arquimedesAtacando.png", 1000,200, true, (1920/12), 12);
 	this->texture[4] = new Texture("res/img/arquimedesDefendendo.png", 1000,200, true, (1144/13), 13);
 	this->texture[5] = new Texture("res/img/arquimedesDefendendoLoop.png",1000,200, true, 88, 1);
-	this->collisionList.push_back(Circle(this->getPosX(), this->getPosY(), 100));
+	this->collisionList.push_back(Circle(this->getPosX(), this->getPosY(), 80));
 }
 
 Arquimedes::~Arquimedes()

@@ -29,7 +29,7 @@ Audio::Audio()
 
 void Audio::playSound(std::string id, int loop)
 {	
-	std::string dir (" audio/");
+	std::string dir ("audio/");
 	std::string extension (".wav");
 	Mix_PlayChannel(-1,tracks[dir+id+extension], loop);
 }

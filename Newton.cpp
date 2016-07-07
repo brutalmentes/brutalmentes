@@ -10,7 +10,7 @@ Newton::Newton() : Character()
 	this->texture[3] = new Texture("res/img/newtonAtacando.png",100,800, true, (1480/20), 20);
 	this->texture[4] = new Texture("res/img/newtonDefendendo.png", 100,800, true, (1691/12), 12);
 	this->texture[5] = new Texture("res/img/newtonDefendendoLoop.png", 100,800, true, 140, 1);
-	this->collisionList.push_back(Circle(this->getPosX(), this->getPosY(), 100));
+	this->collisionList.push_back(Circle(this->getPosX(), this->getPosY(), 70));
 }
 
 
