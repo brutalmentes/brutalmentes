@@ -30,7 +30,6 @@ MoveCharacter::MoveCharacter()
     this->btnDefense = new Button(BTN_DEFENSE, "res/img/btn_defender.png", 625, 250);
     this->healthBar_newton = new Bar(100, 20);
     this->healthBar_arquimedes = new Bar(800, 20);
-    game->audio.playSound("SG05", -1);
 
     ostringstream temp;
     temp << "00:08";
@@ -81,7 +80,7 @@ void MoveCharacter::events()
                 case SDLK_RIGHT: mVelX += DOT_VEL; orientation = ORIENTATION_RIGHT; break;
 
             }
-            game->getCurrentCharacter()->setNumTexture(1);
+            game->getCurrentCharacter()->setNumTexture(2);
         }
 
         if(event.type == SDL_KEYUP && event.key.repeat == 0)
@@ -91,7 +90,7 @@ void MoveCharacter::events()
                 case SDLK_LEFT: mVelX += DOT_VEL; break;
                 case SDLK_RIGHT: mVelX -= DOT_VEL; break;
             }
-            game->getCurrentCharacter()->setNumTexture(1);
+            game->getCurrentCharacter()->setNumTexture(2);
         }
 
         this->btnContinue.handleEvent(&event);
@@ -100,7 +99,7 @@ void MoveCharacter::events()
 
         if(event.type == SDL_USEREVENT)
         {
-            game->audio.playSound("SG03", 0);
+            // game->audio.playSound("SG03", 0);
 
             switch(event.user.code) {
                 case BTN_ATTACK:

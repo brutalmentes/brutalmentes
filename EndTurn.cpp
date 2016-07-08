@@ -9,7 +9,6 @@ extern Timer timer;
 
 EndTurn::EndTurn()
 {
-    
     this->currentCharacter = game->getCurrentCharacter();
     this->otherCharacter = game->getOtherCharacter();
    	timer.start();
@@ -54,6 +53,7 @@ void EndTurn::logic()
     }
     
     // troca o jogador
+    game->getCurrentCharacter()->setNumTexture(0);
     game->nextCharacter();
     
     //chama o novo estado

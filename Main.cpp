@@ -7,6 +7,7 @@ Game *game = new Game();//pegar uma lista de jogadores
 int main(int argc, char *argv[])
 {
     // seleciona os jogadores das equipes;
+    game->audio.playSound("SG05", -1);
     Arquimedes arquimedes;
     Newton newton;
 
